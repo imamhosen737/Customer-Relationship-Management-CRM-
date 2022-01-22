@@ -6,6 +6,7 @@ View Pending Proposal
 @section('content')
 {{-- Table starts from here --}}
 <div class="container wrapper">
+    @dd( $pending );
     <table class="table table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>

@@ -39,6 +39,25 @@ class ProposalApproveController extends Controller
       
     }
 
+
+    public function approved()
+    {
+        $data = Proposal::loadRelation()
+        ->where('customer_id', auth()->user()->customers->id)
+        ->where('status', 'sent')
+        ->get();
+        return view('customer.proposal.accepted_proposal', compact('data'));
+    }
+
+    public function declined()
+    {
+        $data = Proposal::loadRelation()
+        ->where('customer_id', auth()->user()->customers->id)
+        ->where('status', 'sent')
+        ->get();
+        return view('customer.proposal.declined_proposal', compact('data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

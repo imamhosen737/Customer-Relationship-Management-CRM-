@@ -41,29 +41,8 @@
 				 @enderror
 				</div>
 			</div>
+
 			<div class="form-row">
-				
-				{{-- <div class="form-group col-md-6 pt-4">
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="status" value="sent"{{ old('status')=='sent'? 'checked':'' }}  >
-					<label class="form-check-label" for="sent">
-						Pending
-					</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="status" value="accepted" {{ old('status')=='accepted'? 'checked':'' }} >
-					<label class="form-check-label" for="accepted">
-						Accepted
-					</label>
-				</div>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="status" value="declined" {{ old('status')=='declined'? 'checked':'' }} >
-					<label class="form-check-label" for="declined">
-						Declined
-					</label>
-				</div>
-			</div> --}}
 
 			<div class="col">
 				<label for="subject">Subject</label>
@@ -98,7 +77,7 @@
 					@endforeach
 					
 				</select>
-				<table class="table-bordered text-center mt-3" cellspacing="0" width="100%">
+				<table id="mytable" class=" table-bordered text-center mt-3" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 						<th>Name</th>
@@ -107,6 +86,7 @@
 						<th>QTY</th>
 						<th>Tax</th>
 						<th>Total</th>
+						<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -147,7 +127,7 @@
 							var tax= parseInt(data.tax);
 							var t_rate=(rate/100)*tax;
 							var total= rate+t_rate;
-							let ht = "	<tr><td> " + data.name +"</td><td><input type='hidden' name='item_id[]'  type='text' value='" + data.id + "'></td><td><input class='rate' name='price[]'  type='text' value='" + data.rate + "'></td><td ><input class='qty' name='qty[]' type='text' value='1'></td><td><input type='text' class='tax' value='" + data.tax + "'></td><td ><input class='total' readonly type='text' value='"+total+"'></td></tr>";
+							let ht = "	<tr><td> " + data.name +"</td><td><input type='hidden' name='item_id[]'  type='text' value='" + data.id + "'></td><td><input class='rate' name='price[]'  type='text' value='" + data.rate + "'></td><td ><input class='qty' name='qty[]' type='text' value='1'></td><td><input type='text' class='tax' value='" + data.tax + "'></td><td ><input class='total' readonly type='text' value='"+total+"'></td><td><span  id='DeleteButton'><i class='fas fa-trash-alt'></i></span></td></tr>";
 							
 							$('.odd').hide();
 							
@@ -166,7 +146,14 @@
 						var total= (rate*qty)+(t_rate*qty);
 						$(this).closest('tr').find('.total').val(total)
 						$.fn.calculate_sub();
-				})	
+						
+						})
+
+						$("#mytable").on("click", "#DeleteButton", function() {
+                       $(this).closest("tr").remove();
+					   $.fn.calculate_sub();
+
+                        });
 
 				$.fn.calculate_sub = function() {
                     var s = 0;
@@ -174,11 +161,15 @@
                          var ss = parseInt($(this).find('.total').val());
                          s += ss;
                          $(".sub_total").val(s);
+						 
                     });
                }
+						
+				})
+			
 
-
-				})				
+				
+		
 
 
 			</script>

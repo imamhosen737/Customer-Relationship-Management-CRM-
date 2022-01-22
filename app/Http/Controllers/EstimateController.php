@@ -103,11 +103,12 @@ class EstimateController extends Controller
      */
     public function edit($id)
     {
-        $itemm = Item::find($id);
+        $itemm = Item::get();
         $user = User::get();
-        $data = Estimate::find($id);
         $customer = Customer::get();
-        return view('admin.estimates.edit_estimate', compact('data', 'customer', 'user', 'itemm'));
+        $data = Estimate::find($id);
+        $edit_item = EstimateItems::where('estimate_id', $id)->get();
+        return view('admin.estimates.edit_estimate', compact('data', 'user', 'itemm', 'edit_item', 'customer'));
     }
 
     /**
@@ -126,33 +127,28 @@ class EstimateController extends Controller
             'due_date' => 'required'
         ]);
 
-        Estimate::find($id)->update($request->all());
+        // $eid = Estimate::find($id)->update($request->all());
+        $data = Estimate::find($id);
+        $data->delete();
+        // EstimateItems::where('estimate_id', $id)->delete();
+
+        foreach ($request->item_id as $k => $id) {
+            $item['estimate_id'] = $id;
+            $item['item_id'] = $id;
+            $item['price'] = $request->price[$k];
+            $item['qty'] = $request->qty[$k];
+            EstimateItems::create($item);
+        }
+
+        EstimateUser::where('estimate_id', $id)->delete();
+        foreach ($request->user_id as $k => $id) {
+            $item_user['estimate_id'] = $id;
+            $item_user['user_id'] = $id;
+            EstimateUser::create($item_user);
+        }
+
+
         return redirect()->route('estimate.index');
-
-        // $estimate['customer_id'] = $request->customer_id;
-        // $estimate['subject'] = $request->subject;
-        // $estimate['date'] = $request->date;
-        // $estimate['due_date'] = $request->due_date;
-        // $estimate['status'] = 'sent';
-        // $eid = Estimate::create($estimate);
-
-        // foreach ($request->item_id as $k => $id) {
-        //     $item['estimate_id'] = $eid->id;
-        //     $item['item_id'] = $id;
-        //     $item['price'] = $request->price[$k];
-        //     $item['qty'] = $request->qty[$k];
-        //     EstimateItems::create($item);
-        // }
-
-        // foreach ($request->user_id as $k => $id) {
-        //     $item_user['estimate_id'] = $eid->id;
-        //     $item_user['user_id'] = $id;
-        //     EstimateUser::create($item_user);
-        // }
-        // return redirect()->route('estimate.index');
-
-
-
     }
 
     /**

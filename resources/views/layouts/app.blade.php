@@ -452,6 +452,30 @@
                         </ul>
                     </li>
 
+
+                    <li class="sidebar-menu-item active ">
+                        <a class="sidebar-menu-button" data-toggle="collapse" href="#user">
+                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                            <span class="sidebar-menu-text">User</span>
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        <ul class="sidebar-submenu collapse show " id="user">
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{ route('users.index') }}">
+                                    <span class="sidebar-menu-text">User List</span>
+                                </a>
+                            </li>
+                        </ul>
+                        {{-- <ul class="sidebar-submenu collapse show " id="user">
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="">
+                                    <span class="sidebar-menu-text">Add User</span>
+                                </a>
+                            </li>
+                        </ul> --}}
+                    </li>
+
+
                 </ul>
 
 
@@ -494,7 +518,20 @@
                                     <span class="sidebar-menu-text">Pending Proposal</span>
                                 </a>
                             </li>
-
+                        </ul>
+                        <ul class="sidebar-submenu collapse show " id="proposal">
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{ route('accepted_proposal') }}">
+                                    <span class="sidebar-menu-text">Accepted Proposal</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="sidebar-submenu collapse show " id="proposal">
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{ route('declined_proposal') }}">
+                                    <span class="sidebar-menu-text">Declined Proposal</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 

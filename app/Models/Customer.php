@@ -30,8 +30,4 @@ class Customer extends Model
         return $this->hasMany(Expense::class);
     }
 
-    // public function assignedTo()
-    // {
-    //     return $this->belongsTo('App\Models\User', 'assigned_to', 'id');
-    // }
 }
