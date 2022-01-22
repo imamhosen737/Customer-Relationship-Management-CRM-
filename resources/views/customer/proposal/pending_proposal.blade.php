@@ -6,7 +6,7 @@ View Pending Proposal
 @section('content')
 {{-- Table starts from here --}}
 <div class="container wrapper">
-    @dd( $pending );
+
     <table class="table table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -20,7 +20,7 @@ View Pending Proposal
         </thead>
         <tfoot>
             <tr>
-         
+
             </tr>
         </tfoot>
         <tbody>
@@ -32,11 +32,11 @@ View Pending Proposal
                 <td>{{$pendingValue->date}}</td>
                 <td>{{$pendingValue->due_date}}</td>
                 <td>
-                    <a href="" class="btn btn-sm btn-primary">Details</a>
+                    <a href="{{route('proposals.show', $pendingValue->id)}}" class="btn btn-sm btn-primary">Details</a>
                 </td>
             </tr>
             @empty
-                
+
             @endforelse
         </tbody>
     </table>

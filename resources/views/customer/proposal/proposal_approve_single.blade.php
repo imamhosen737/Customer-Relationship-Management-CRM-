@@ -11,7 +11,7 @@
         }
 </style>
 <div class="container wrapper">
-{{$proposalItem}}
+
     <div class="row">
         <div class="col-md-3">
             <div class="jumbotron">
@@ -139,6 +139,12 @@
                     <p>Country: {{$proposalItem->customer->country ? $proposalItem->customer->country: 'NA'}}</p>
                     <p>Zip: {{$proposalItem->customer->zip ? $proposalItem->customer->zip : 'NA'}}</p>
                     <p>Vat Number: {{$proposalItem->customer->vat_number ?$proposalItem->customer->vat_number : 'Not Applicable'}}</p>
+                    @if ($proposalItem->sign)
+                    <p>
+                        Sign
+                        <img src="{{ $proposalItem->sign }}" alt="sign" width="150" height="75">
+                    </p>
+                    @endif
 
 
                 </div>
