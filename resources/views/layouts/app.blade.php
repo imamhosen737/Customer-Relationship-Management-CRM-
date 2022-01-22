@@ -175,6 +175,7 @@
                                     </ol>
                                 </nav>
                                 <h1 class="m-0">@yield('page_title')</h1>
+                                @yield('page_title_extra')
                             </div>
 
                         </div>
