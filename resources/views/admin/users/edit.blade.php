@@ -14,7 +14,7 @@ Edit User
     </div>
 @endif
 <form action="{{route('users.update', $user->id)}}" method="post">
-    
+
     {{ csrf_field() }}
     {{ method_field('PUT') }}
 
@@ -42,11 +42,10 @@ Edit User
         <div class="form-group col-md-6">
             <label for="status">Status</label><br>
             <select id="status" class="custom-select" name="status">
-                @if ($user->status == 'active')
-                  <option value="active" selected>Active</option>
-                  @else
-                  <option value="inactive">Inactive</option>
-                @endif
+
+                  <option @if ($user->status == 'active') selected @endif value="active" selected>Active</option>
+
+                  <option @if ($user->status == 'inactive') selected @endif value="inactive">Inactive</option>
             </select>
         </div>
 

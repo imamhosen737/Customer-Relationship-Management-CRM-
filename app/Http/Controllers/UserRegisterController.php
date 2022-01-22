@@ -11,11 +11,11 @@ class UserRegisterController extends Controller
 {
     public function index()
     {
-        // $departments = Departments::where('id', '!=', 1)->get();
-        // $users = User::whereIn('role', ['admin'])
-        //     ->get();
-        // return  view('admin.users.index', compact('users', 'departments'));
-        echo "ok";
+        $departments = Departments::where('id', '!=', 1)->get();
+        $users = User::whereIn('role', ['admin'])
+            ->get();
+        return  view('admin.users.index', compact('users', 'departments'));
+        // echo "ok";
     }
 
 

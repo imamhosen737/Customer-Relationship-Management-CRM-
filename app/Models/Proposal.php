@@ -39,10 +39,10 @@ class Proposal extends Model
             'customers',
             'customers.user',
             // 'customer.assignedTo',
-            // 'items',
-            // 'items.item',
-            // 'items.item.unit',
-            // 'items.item.tax',
+            'items',
+            'items.item',
+            'items.item.unit',
+            'items.item.tax',
         ]);
     }
 }

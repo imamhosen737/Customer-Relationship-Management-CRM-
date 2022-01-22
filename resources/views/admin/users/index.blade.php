@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')
+@section('page_title_extra')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -82,7 +82,7 @@
                                     <span style="color: red; font-weight:bold">{{$user->status}}</span>
                                     @endif
                                 </td>
-                                <td>{{$user->department->name}}</td>
+                                <td>{{$user->departments->name}}</td>
                                 <td>
                                     <a href="{{route('users.edit', $user->id)}}" class="btn btn-sm btn-blue">Edit</a>
                                     <a href="javascript:void()" class="delete-user btn btn-sm btn-danger" data-id="{{$user->id}}">Delete</a>
@@ -95,7 +95,6 @@
                 </div>
             </div>
         </div>
-
 </div>
 {{-- Table ends here --}}
 
@@ -145,6 +144,7 @@
             })
         });
 
+        $(".main-breadcrumb").remove();
     });
 </script>
 

@@ -26,6 +26,10 @@
     <!-- Perfect Scrollbar -->
     <link type="text/css" href="{{asset('assets/vendor/perfect-scrollbar.css')}}" rel="stylesheet">
 
+    <!-- Toastr -->
+    <link type="text/css" href="{{asset('assets/css/toastr.min.css')}}" rel="stylesheet">
+        <!-- jQuery -->
+    <script src="{{asset('assets/vendor/jquery.min.js')}}"></script>
     <!-- App CSS -->
     <link type="text/css" href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
@@ -34,7 +38,7 @@
 
     <!-- Font Awesome FREE Icons -->
     <link type="text/css" href="{{asset('assets/css/vendor-fontawesome-free.css')}}" rel="stylesheet">
-    
+
 
 </head>
 
@@ -168,15 +172,16 @@
                     <div class="container-fluid page__heading-container">
                         <div class="page__heading d-flex align-items-end">
                             <div class="flex">
-                                <nav aria-label="breadcrumb">
+                                <nav aria-label="breadcrumb" class="main-breadcrumb">
                                     <ol class="breadcrumb mb-0">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">@yield('page_title')</li>
                                     </ol>
                                 </nav>
                                 <h1 class="m-0">@yield('page_title')</h1>
-                            </div>
 
+                                @yield('page_title_extra')
+                            </div>
                         </div>
                     </div>
 
@@ -533,6 +538,13 @@
                                 </a>
                             </li>
                         </ul>
+                        <ul class="sidebar-submenu collapse show " id="proposal">
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{ route('proposals.index') }}">
+                                    <span class="sidebar-menu-text">View all Proposal</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
 
@@ -562,9 +574,9 @@
 
             </div>
         </div>
-    </div>  
+    </div>
      @endif
-                
+
             </div>
             <!-- // END drawer-layout -->
 
@@ -584,7 +596,7 @@
         }"></app-settings>
     </div>
 
-    
+
 
     <!-- Bootstrap -->
     <script src="{{asset('assets/vendor/popper.min.js')}}"></script>
@@ -595,6 +607,9 @@
 
     <!-- DOM Factory -->
     <script src="{{asset('assets/vendor/dom-factory.js')}}"></script>
+    {{-- toastr  --}}
+    <script src="{{asset('assets/vendor/toastr.min.js')}}"></script>
+
 
     <!-- MDK -->
     <script src="{{asset('assets/vendor/material-design-kit.js')}}"></script>
@@ -635,9 +650,33 @@
                         console.log( editor );
                 } )
                 .catch( error => {
-                        console.error( error );
+                        console.log( error );
                 } );
 </script>
+<script>
+    $(document).ready(function () {
+            $('.toast').toast('show');
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+    });
+</script>
+
 
 
 </body>
