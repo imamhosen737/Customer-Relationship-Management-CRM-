@@ -96,7 +96,7 @@
 				@foreach ($edit_item as $e_i)
 				<tr>
 					<td> {{ $e_i->item->name }}</td>
-					<td><input type='hidden' name='item_id[]'  type='text' value='{{ $e_i->id }}'></td>
+					<td><input type='hidden' name='item_id[]'  type='text' value='{{ $e_i->item_id }}'></td>
 					<td><input class='rate' name='price[]'  type='text' value='{{ $e_i->price }}'></td>
 					<td ><input class='qty' name='qty[]' type='text' value='{{ $e_i->qty }}'></td>
 					<td><input type='text' class='tax' value='{{ $e_i->item->tax->rules }}'></td>

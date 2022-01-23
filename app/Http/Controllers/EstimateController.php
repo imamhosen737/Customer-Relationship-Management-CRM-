@@ -53,7 +53,6 @@ class EstimateController extends Controller
             'due_date' => 'required',
             'user_id' => 'required'
         ]);
-        // Estimate::create($request->all());
 
         $estimate['customer_id'] = $request->customer_id;
         $estimate['subject'] = $request->subject;
@@ -69,8 +68,6 @@ class EstimateController extends Controller
             $item['item_id'] = $id;
             $item['price'] = $request->price[$k];
             $item['qty'] = $request->qty[$k];
-            // echo "<pre>";
-            // print_r($item);
             EstimateItems::create($item);
         }
 
@@ -79,7 +76,6 @@ class EstimateController extends Controller
             $item_user['user_id'] = $id;
             EstimateUser::create($item_user);
         }
-
 
         return redirect()->route('estimate.index');
     }
@@ -127,26 +123,30 @@ class EstimateController extends Controller
             'due_date' => 'required'
         ]);
 
-        // $eid = Estimate::find($id)->update($request->all());
-        $data = Estimate::find($id);
-        $data->delete();
-        // EstimateItems::where('estimate_id', $id)->delete();
 
-        foreach ($request->item_id as $k => $id) {
+        EstimateItems::where('estimate_id', $id)->delete();
+        EstimateUser::where('estimate_id', $id)->delete();
+
+        $estimate['customer_id'] = $request->customer_id;
+        $estimate['subject'] = $request->subject;
+        $estimate['date'] = $request->date;
+        $estimate['due_date'] = $request->due_date;
+        $estimate['status'] = 'sent';
+        Estimate::find($id)->update($estimate);
+
+        foreach ($request->item_id as $k => $est_item_id) {
             $item['estimate_id'] = $id;
-            $item['item_id'] = $id;
+            $item['item_id'] = $est_item_id;
             $item['price'] = $request->price[$k];
             $item['qty'] = $request->qty[$k];
             EstimateItems::create($item);
         }
 
-        EstimateUser::where('estimate_id', $id)->delete();
-        foreach ($request->user_id as $k => $id) {
+        foreach ($request->user_id as $k => $est_user_id) {
             $item_user['estimate_id'] = $id;
-            $item_user['user_id'] = $id;
+            $item_user['user_id'] = $est_user_id;
             EstimateUser::create($item_user);
         }
-
 
         return redirect()->route('estimate.index');
     }
