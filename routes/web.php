@@ -65,11 +65,12 @@ Route::Group(['middleware' => ['ChkCustomer']], function () {
 
     Route::resource('customer', CustomerController::class);
 
-
     Route::get('/pending_proposal', [ProposalApproveController::class, 'view'])->name('pending_proposal');
     Route::get('/accepted_proposal', [ProposalApproveController::class, 'approved'])->name('accepted_proposal');
     Route::get('/declined_proposal', [ProposalApproveController::class, 'declined'])->name('declined_proposal');
     Route::resource('/proposals', ProposalApproveController::class);
+
+    Route::get('/proposalDownload/{id}', [ProposalApproveController::class, 'printToPdf'])->name('proposalDownload');
 });
 
 

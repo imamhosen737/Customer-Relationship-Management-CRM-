@@ -26,6 +26,11 @@
     <!-- Perfect Scrollbar -->
     <link type="text/css" href="{{asset('assets/vendor/perfect-scrollbar.css')}}" rel="stylesheet">
 
+    <!-- Toastr -->
+    <link type="text/css" href="{{asset('assets/css/toastr.min.css')}}" rel="stylesheet">
+        <!-- jQuery -->
+    <script src="{{asset('assets/vendor/jquery.min.js')}}"></script>
+
     <!-- App CSS -->
     <link type="text/css" href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
@@ -534,6 +539,13 @@
                                 </a>
                             </li>
                         </ul>
+                        <ul class="sidebar-submenu collapse show " id="proposal">
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{ route('proposals.index') }}">
+                                    <span class="sidebar-menu-text">View All Proposals</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
 
@@ -597,6 +609,9 @@
     <!-- DOM Factory -->
     <script src="{{asset('assets/vendor/dom-factory.js')}}"></script>
 
+    {{-- toastr  --}}
+    <script src="{{asset('assets/vendor/toastr.min.js')}}"></script>
+
     <!-- MDK -->
     <script src="{{asset('assets/vendor/material-design-kit.js')}}"></script>
 
@@ -636,9 +651,35 @@
                         console.log( editor );
                 } )
                 .catch( error => {
-                        console.error( error );
+                        console.log( error );
                 } );
 </script>
+
+
+<script>
+    $(document).ready(function () {
+            $('.toast').toast('show');
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+    });
+</script>
+
 
 
 </body>

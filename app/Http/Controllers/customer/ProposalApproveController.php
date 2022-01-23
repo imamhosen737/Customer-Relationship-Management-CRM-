@@ -16,11 +16,12 @@ class ProposalApproveController extends Controller
      */
     public function index()
     {
+
         $proposals = Proposal::loadRelation()
             ->where('customer_id', auth()->user()->customer->id)
             ->get();
         // return $proposalItems[0]->proposal->customer->user->name;
-        return view('customers.proposal_approve', compact('proposals'));
+        return view('customer.proposal.proposal_approve', compact('proposals'));
     }
 
 
@@ -28,7 +29,7 @@ class ProposalApproveController extends Controller
     {
         // echo "ok";
         // dd(auth()->user()->customers->id);
-        
+
         $pending = Proposal::loadRelation()
             ->where('customer_id', auth()->user()->customers->id)
             ->where('status', 'sent')
@@ -36,25 +37,24 @@ class ProposalApproveController extends Controller
 
         // dd($pending);
         return view('customer.proposal.pending_proposal', compact('pending'));
-      
     }
 
 
     public function approved()
     {
         $data = Proposal::loadRelation()
-        ->where('customer_id', auth()->user()->customers->id)
-        ->where('status', 'sent')
-        ->get();
+            ->where('customer_id', auth()->user()->customers->id)
+            ->where('status', 'sent')
+            ->get();
         return view('customer.proposal.accepted_proposal', compact('data'));
     }
 
     public function declined()
     {
         $data = Proposal::loadRelation()
-        ->where('customer_id', auth()->user()->customers->id)
-        ->where('status', 'sent')
-        ->get();
+            ->where('customer_id', auth()->user()->customers->id)
+            ->where('status', 'sent')
+            ->get();
         return view('customer.proposal.declined_proposal', compact('data'));
     }
 
@@ -76,7 +76,23 @@ class ProposalApproveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if ($request->length <= 1858) {
+                throw new \Exception('Please enter your signature');
+            }
+            $proposal = Proposal::find($request->id);
+            if ($proposal) {
+                $proposal->update([
+                    'status' => 'accepted',
+                    'sign' => $request->sign_text,
+                ]);
+                return response()->json(['status' => 'success', 'message' => 'Accepted Successfully !']);
+            }
+            return response()->json(['status' => 'error', 'message' =>  'Accept Failed !']);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+            return response()->json(['status' => 'error', 'message' =>  'Accept Failed !']);
+        }
     }
 
     /**
@@ -91,7 +107,7 @@ class ProposalApproveController extends Controller
             ->where('id', $id)
             ->first();
         // dd($proposalItem);
-        return view('customers.proposal_approve_single', compact('proposalItem'));
+        return view('customer.proposal.proposal_approve_single', compact('proposalItem'));
     }
 
     /**
@@ -127,6 +143,30 @@ class ProposalApproveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $proposal = Proposal::find($id);
+            if ($proposal) {
+                $proposal->update([
+                    'status' => 'declined',
+                ]);
+                return response()->json(['status' => 'success', 'message' => 'Rejected Successfully !']);
+            }
+            return response()->json(['status' => 'error', 'message' =>  'Reject Failed !']);
+        } catch (\Exception $e) {
+
+            return $e;
+            return response()->json(['status' => 'error', 'message' =>  'Reject Failed !']);
+        }
+    }
+
+    public function printToPdf($id)
+    {
+
+        $proposalItem = Proposal::loadRelation()
+            ->where('id', $id)
+            ->first();
+
+        $pdf = \PDF::loadView('customer.proposal.proposal_pdf', compact('proposalItem'));
+        return $pdf->download();
     }
 }

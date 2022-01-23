@@ -38,11 +38,10 @@ class Proposal extends Model
         return $query->with([
             'customers',
             'customers.user',
-            // 'customer.assignedTo',
-            // 'items',
-            // 'items.item',
-            // 'items.item.unit',
-            // 'items.item.tax',
+            'items',
+            'items.item',
+            'items.item.unit',
+            'items.item.tax',
         ]);
     }
 }
