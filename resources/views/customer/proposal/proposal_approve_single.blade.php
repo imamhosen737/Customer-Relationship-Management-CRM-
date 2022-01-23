@@ -141,7 +141,7 @@
                     <p>Vat Number: {{$proposalItem->customer->vat_number ?$proposalItem->customer->vat_number : 'Not Applicable'}}</p>
                     @if ($proposalItem->sign)
                     <p>
-                        Sign
+                        Signeture
                         <img src="{{ $proposalItem->sign }}" alt="sign" width="150" height="75">
                     </p>
                     @endif
