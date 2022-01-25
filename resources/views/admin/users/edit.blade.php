@@ -4,6 +4,19 @@ Edit User
 @endsection
 
 @section('content')
+@if ($errors->any())
+
+  @foreach ($errors->all() as $error)
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong> @php  echo $error; @endphp </strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  @endforeach
+
+@endif
+
 
 @if (session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -14,7 +27,7 @@ Edit User
     </div>
 @endif
 <form action="{{route('users.update', $user->id)}}" method="post">
-    
+
     {{ csrf_field() }}
     {{ method_field('PUT') }}
 
@@ -66,10 +79,6 @@ Edit User
 
 
             </select>
-            {{-- @if (  $departments->id == $user->department_id)
-                <option value="{{ $departments->id }}" selected>{{ $departments->name }}</option>
-
-                @endif --}}
         </div>
 
     </div>

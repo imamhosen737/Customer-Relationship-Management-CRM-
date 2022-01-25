@@ -26,4 +26,8 @@ class Estimate extends Model
     {
         return $this->hasMany(EstimateItems::class);
     }
+    public function estimateuser()
+    {
+        return $this->hasMany(EstimateUser::class,'estimate_id','id');
+    }
 }

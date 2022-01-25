@@ -40,7 +40,7 @@
                         <span class="text-primary font-weight-bold">{{$proposal->status}}</span>
                         @elseif ($proposal->status == 'accepted')
                         <span class="text-success font-weight-bold">{{$proposal->status}}</span>
-                        @elseif ($proposal->status == 'rejected')
+                        @elseif ($proposal->status == 'declined')
                         <span class="text-danger font-weight-bold">{{$proposal->status}}</span>
                     @endif
                 </td>

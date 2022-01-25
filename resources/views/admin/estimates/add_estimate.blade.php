@@ -122,7 +122,6 @@
 						},
 						dataType: "json",
 						success: function(data){
-							// console.log(data)
 							var rate= parseInt(data.rate);
 							var tax= parseInt(data.tax);
 							var t_rate=(rate/100)*tax;

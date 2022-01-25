@@ -518,34 +518,21 @@
                             <span class="sidebar-menu-text">Proposals</span>
                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                         </a>
-                        <ul class="sidebar-submenu collapse show " id="proposal">
-                            <li class="sidebar-menu-item active">
-                                <a class="sidebar-menu-button" href="{{ route('pending_proposal') }}">
-                                    <span class="sidebar-menu-text">Pending Proposal</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="sidebar-submenu collapse show " id="proposal">
-                            <li class="sidebar-menu-item active">
-                                <a class="sidebar-menu-button" href="{{ route('accepted_proposal') }}">
-                                    <span class="sidebar-menu-text">Accepted Proposal</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="sidebar-submenu collapse show " id="proposal">
-                            <li class="sidebar-menu-item active">
-                                <a class="sidebar-menu-button" href="{{ route('declined_proposal') }}">
-                                    <span class="sidebar-menu-text">Declined Proposal</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="sidebar-submenu collapse show " id="proposal">
+                        
+                        
+                        
+                        <ul class="sidebar-submenu collapse show ">
                             <li class="sidebar-menu-item active">
                                 <a class="sidebar-menu-button" href="{{ route('proposals.index') }}">
                                     <span class="sidebar-menu-text">View All Proposals</span>
                                 </a>
                             </li>
-                        </ul>
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{route('proposals.status')}}">
+                                    <span class="sidebar-menu-text">View Proposal Status</span>
+                                </a>
+                            </li>
+                       </ul>
                     </li>
 
 

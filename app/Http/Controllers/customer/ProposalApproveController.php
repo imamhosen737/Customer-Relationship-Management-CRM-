@@ -25,38 +25,48 @@ class ProposalApproveController extends Controller
     }
 
 
-    public function view()
+    public function status()
     {
-        // echo "ok";
-        // dd(auth()->user()->customers->id);
-
-        $pending = Proposal::loadRelation()
-            ->where('customer_id', auth()->user()->customers->id)
-            ->where('status', 'sent')
-            ->get();
-
-        // dd($pending);
-        return view('customer.proposal.pending_proposal', compact('pending'));
+        return view('customer.proposal.proposal_status');
     }
-
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function approved()
     {
-        $data = Proposal::loadRelation()
-            ->where('customer_id', auth()->user()->customers->id)
+        $proposals = Proposal::loadRelation()
+            ->where('customer_id', auth()->user()->customer->id)
+            ->where('status', 'accepted')
+            ->get();
+        return response()->json(['status' => 'success', 'data' => $proposals], 200);
+    }
+
+    public function pending()
+    {
+        $pending = Proposal::loadRelation()
+            ->where('customer_id', auth()->user()->customer->id)
             ->where('status', 'sent')
             ->get();
-        return view('customer.proposal.accepted_proposal', compact('data'));
+
+            return response()->json(['status' => 'success', 'data' => $pending], 200);
     }
 
     public function declined()
     {
-        $data = Proposal::loadRelation()
-            ->where('customer_id', auth()->user()->customers->id)
-            ->where('status', 'sent')
+        $pending = Proposal::loadRelation()
+            ->where('customer_id', auth()->user()->customer->id)
+            ->where('status', 'declined')
             ->get();
-        return view('customer.proposal.declined_proposal', compact('data'));
+
+            return response()->json(['status' => 'success', 'data' => $pending], 200);
     }
+
+
+   
+
+   
 
     /**
      * Show the form for creating a new resource.

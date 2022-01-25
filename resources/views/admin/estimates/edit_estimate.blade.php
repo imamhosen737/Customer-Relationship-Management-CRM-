@@ -13,7 +13,11 @@
 			<select id="customer_id" class="custom-select" name="customer_id">
 				<option value="">Select Customer</option>
 				@foreach ($customer as $c)
-					<option value="{{ $c->id }}">{{ $c->company_name }}</option>
+					@if (old('customer_id') == $c->id)
+					<option value="{{ $c->id }}" @if ($data->customer->company_name == $c->company_name) {{ 'selected' }}@endif>{{ $c->company_name }}</option>
+					@else
+					<option value="{{ $c->id }}" @if ($data->customer->company_name == $c->company_name) {{ 'selected' }}@endif>{{ $c->company_name }}</option>	
+					@endif
 				@endforeach
 			</select>
 			@error('customer_id')
@@ -50,13 +54,16 @@
 		<select name="user_id[]" class="form-control" multiple size = 6>
 			<option value="0">Select User</option>
 			@foreach ($user as $u)
-				<option value="{{ $u->id }}">{{ $u->name }}</option>
+			@if (old('user_id[]') == $u->id)
+			<option value="{{ $u->id }}" @if ($data->customer->user_id){{ 'selected' }} @endif>{{ $u->name }}</option>
+			@else
+			<option value="{{ $u->id }}" @if ($data->customer->user_id){{ 'selected' }} @endif>{{ $u->name }}</option>
+			@endif
 			@endforeach
 		</select>
 	</div>
 	</div>
 
-	{{-- code start from here to edit Item contents un an Estimae --}}
 
 	{{-- <div class="form-row mt-3">
 		<div class="col">
