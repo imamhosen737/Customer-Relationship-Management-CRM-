@@ -48,17 +48,17 @@
 		<span style="color: red">{{ $message }}</span>
 	@enderror
 	</div>
-
 	<div class="col">
 		<label for="user_id">User</label>
 		<select name="user_id[]" class="form-control" multiple size = 6>
 			<option value="0">Select User</option>
 			@foreach ($user as $u)
-			@if (old('user_id[]') == $u->id)
-			<option value="{{ $u->id }}" @if ($data->customer->user_id){{ 'selected' }} @endif>{{ $u->name }}</option>
-			@else
-			<option value="{{ $u->id }}" @if ($data->customer->user_id){{ 'selected' }} @endif>{{ $u->name }}</option>
-			@endif
+			<option value="{{ $u->id }}" @foreach ($edit_user as $e_user)
+				{{($e_user->user->id == $u->id)? 'selected':'' }}
+			@endforeach  >
+			{{ $u->name }}</option>
+			
+			
 			@endforeach
 		</select>
 	</div>

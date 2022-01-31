@@ -36,7 +36,7 @@ class ProposalApproveController extends Controller
      */
     public function approved()
     {
-        $proposals = Proposal::loadRelation()
+        $proposals =Proposal::with('customers',   'customers.user')
             ->where('customer_id', auth()->user()->customer->id)
             ->where('status', 'accepted')
             ->get();
@@ -45,17 +45,19 @@ class ProposalApproveController extends Controller
 
     public function pending()
     {
-        $pending = Proposal::loadRelation()
+        $pending = Proposal::with('customers',   'customers.user')
             ->where('customer_id', auth()->user()->customer->id)
             ->where('status', 'sent')
             ->get();
+
+            
 
             return response()->json(['status' => 'success', 'data' => $pending], 200);
     }
 
     public function declined()
     {
-        $pending = Proposal::loadRelation()
+        $pending = Proposal::with('customers',   'customers.user')
             ->where('customer_id', auth()->user()->customer->id)
             ->where('status', 'declined')
             ->get();

@@ -9,16 +9,16 @@ class ProposalItem extends Model
 {
     use HasFactory;
     protected $table = 'proposalItems';
-    protected $fillable = ['proposal_id', 'item_id'];
+    protected $fillable = ['proposal_id', 'item_id', 'price', 'qty'];
 
     public function proposal()
     {
-        return $this->hasOne('App\Models\Proposal', 'id', 'proposal_id');
+        return $this->belongsTo(Proposal::class, 'proposal_id', 'id');
     }
 
     public function item()
     {
-        return $this->hasOne('App\Models\Item', 'id', 'item_id');
+        return $this->belongsTo(Item::class, 'item_id', 'id');
     }
 
     public function scopeLoadRelation($query)

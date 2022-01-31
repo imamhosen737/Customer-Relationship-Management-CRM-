@@ -90,13 +90,19 @@
 						</tr>
 					</thead>
 					<tbody>
-					
+						
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5" class="text-right"> Grand Total =  </td>
+							<td colspan="1"><input type="text" class="sub_total" readonly></td>
+						</tr>
+					</tfoot>
 				</table>
-				<div class="col-md-12 offset-10">
+				{{-- <div class="col-md-12 offset-10">
 				  <h2>Gross Total:</h2>
 				<input type="text" class="sub_total" readonly>
-				</div>
+				</div> --}}
 			</div>
 			 
 
@@ -166,11 +172,6 @@
 						
 				})
 			
-
-				
-		
-
-
 			</script>
 		
 @endsection

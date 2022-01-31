@@ -321,7 +321,7 @@
                         </a>
                         <ul class="sidebar-submenu collapse show " id="proposal">
                             <li class="sidebar-menu-item ">
-                                <a class="sidebar-menu-button" href="">
+                                <a class="sidebar-menu-button" href="{{ route('proposal.index') }}">
                                     <span class="sidebar-menu-text">Proposal List</span>
                                 </a>
                             </li>
@@ -348,6 +348,29 @@
                             </li>
                         </ul>
                     </li>
+
+
+
+
+                    <li class="sidebar-menu-item  ">
+                        <a class="sidebar-menu-button" data-toggle="collapse" href="#project">
+                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                            <span class="sidebar-menu-text">Project</span>
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        <ul class="sidebar-submenu collapse show " id="project">
+                            <li class="sidebar-menu-item ">
+                                <a class="sidebar-menu-button" href="{{ route('project.index') }}">
+                                    <span class="sidebar-menu-text">All Project</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+
 
 
 
@@ -420,6 +443,21 @@
                     </li>
 
                     <li class="sidebar-menu-item active ">
+                        <a class="sidebar-menu-button" data-toggle="collapse" href="#drpartment">
+                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                            <span class="sidebar-menu-text">Departments</span>
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        <ul class="sidebar-submenu collapse show " id="drpartment">
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{ route('department.index') }}">
+                                    <span class="sidebar-menu-text">Department List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-menu-item active ">
                         <a class="sidebar-menu-button" data-toggle="collapse" href="#exp_cat">
                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                             <span class="sidebar-menu-text">Leads</span>
@@ -472,13 +510,6 @@
                                 </a>
                             </li>
                         </ul>
-                        {{-- <ul class="sidebar-submenu collapse show " id="user">
-                            <li class="sidebar-menu-item active">
-                                <a class="sidebar-menu-button" href="">
-                                    <span class="sidebar-menu-text">Add User</span>
-                                </a>
-                            </li>
-                        </ul> --}}
                     </li>
 
 
@@ -512,14 +543,13 @@
 
                         </ul>
                     </li>
+
                     <li class="sidebar-menu-item active open">
                         <a class="sidebar-menu-button" data-toggle="collapse" href="#proposal">
                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                             <span class="sidebar-menu-text">Proposals</span>
                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                         </a>
-                        
-                        
                         
                         <ul class="sidebar-submenu collapse show ">
                             <li class="sidebar-menu-item active">
@@ -533,7 +563,7 @@
                                 </a>
                             </li>
                        </ul>
-                    </li>
+                    </li>           
 
 
                     <li class="sidebar-menu-item active open">
@@ -627,7 +657,7 @@
     {{-- Table --}}
     <script>
         $(document).ready(function () {
-            $('.table').DataTable()
+            $('.data_table').DataTable()
         });
     </script>
     {{-- Ck editor --}}

@@ -25,7 +25,7 @@ class Proposal extends Model
 
     public function customers()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'id');
+        return $this->belongsTo(Customers::class, 'customer_id', 'id');
     }
 
     public function items()
@@ -43,5 +43,11 @@ class Proposal extends Model
             'items.item.unit',
             'items.item.tax',
         ]);
+    }
+
+    public function proposalItem()
+
+    {
+        return $this->hasMany(ProposalItem::class);
     }
 }

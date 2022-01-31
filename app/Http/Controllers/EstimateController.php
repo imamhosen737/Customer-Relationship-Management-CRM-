@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tax;
+use App\Models\Item;
+use App\Models\User;
 use App\Models\Customer;
 use App\Models\Estimate;
-use App\Models\EstimateItems;
 use App\Models\EstimateUser;
-use App\Models\Item;
-use App\Models\Tax;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\EstimateItems;
+use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Queue\SerializesModels;
+use App\Mail\EstimateMail;
 
 class EstimateController extends Controller
 {
@@ -31,7 +36,7 @@ class EstimateController extends Controller
      */
     public function create()
     {
-        $user = User::get();
+        $user = User::where('role', 'customer')->get();
         $itemm = Item::get();
         $data = Estimate::get();
         $customer = Customer::get();
@@ -77,8 +82,24 @@ class EstimateController extends Controller
             EstimateUser::create($item_user);
         }
 
+
+        $details = [
+            'title' => 'Mail from CRM project',
+            'body' => 'This is for testing mail using sendinblue'
+        ];
+
+        // Mail::to('imamhosen737@gmail.com')->send($details);
+        // \Mail::raw('plain text message', function ($message) {
+        //     $message->from('john@johndoe.com', 'John Doe');
+        //     $message->sender('john@johndoe.com', 'John Doe');
+        //     $message->to('john@johndoe.com', 'John Doe');
+        // });
+
+        // $mail = Customer::find($request->customer_id)->user->email;
+        // Mail::to($mail)->send(new EstimateMail($details));
         return redirect()->route('estimate.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -88,7 +109,20 @@ class EstimateController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Estimate::find($id);
+        $est_item = EstimateItems::where('estimate_id', $id)->get();
+        return view('admin.estimates.estimate_details', compact('data', 'est_item'));
+    }
+
+
+    public function printToPdf($id)
+    {
+
+        // return "ok";
+        // $contact = proposal::find($id);
+        // $ProposalItem = ProposalItem::where('proposal_id',$id)->get();
+        // $pdf = \PDF::loadView('admin.proposals.download',compact('contact','ProposalItem'));
+        //  return $pdf->download();
     }
 
     /**
@@ -104,7 +138,8 @@ class EstimateController extends Controller
         $customer = Customer::get();
         $data = Estimate::find($id);
         $edit_item = EstimateItems::where('estimate_id', $id)->get();
-        return view('admin.estimates.edit_estimate', compact('data', 'user', 'itemm', 'edit_item', 'customer'));
+        $edit_user = EstimateUser::where('estimate_id', $id)->get();
+        return view('admin.estimates.edit_estimate', compact('data', 'user', 'itemm', 'edit_item', 'customer', 'edit_user'));
     }
 
     /**

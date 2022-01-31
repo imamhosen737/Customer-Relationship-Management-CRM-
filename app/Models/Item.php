@@ -28,4 +28,9 @@ class Item extends Model
     {
         return $this->hasMany(EstimateItems::class);
     }
+
+    public function proposalItem()
+    {
+        return $this->hasMany(ProposalItem::class);
+    }
 }

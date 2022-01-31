@@ -17,7 +17,7 @@
 <div class="container wrapper">
 
 {{-- <a href="{{ route('tax.create') }}" class="btn btn-sm btn-success">Add</a> --}}
-    <table class="table table-bordered table-hover" cellspacing="0" width="100%">
+    <table class="table data_table table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th class="col-md-2">Serial</th>

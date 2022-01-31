@@ -140,7 +140,7 @@
             $.each(data, function(key, value) {
                 content +=  "<tr>" +
                         "<td>" + (++key) + "</td>" +
-                        "<td>" + value.customer.user.name + "</td>" +
+                        "<td>" + value.customers.user.name + "</td>" +
                         "<td>" + value.subject + "</td>" +
                         "<td>" + value.date + "</td>" +
                         "<td>" + value.due_date + "</td>" +

@@ -15,16 +15,26 @@ class CreateProposalItemsTable extends Migration
     {
         Schema::create('proposalItems', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('proposal_id')->index();
-            $table->unsignedBigInteger('item_id')->index();
+            // $table->unsignedBigInteger('proposal_id')->index();
+            // $table->unsignedBigInteger('item_id')->index();
             $table->decimal('price', 10, 2);
-            $table->decimal('quantity', 10, 2);
+            $table->decimal('qty', 10, 2);
+            $table->foreignId('item_id')->references('id')->on('items')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('proposal_id')->references('id')->on('proposals')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
-
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->foreign('proposal_id')->references('id')->on('proposals')->onDelete('cascade');
+            
         });
+
+        
     }
+
+        // $table->id();
+        // $table->foreignId('proposal_id')->references('id')->on('proposals')->onDelete('cascade')->onUpdate('cascade');
+        // $table->foreignId('item_id')->references('id')->on('items')->onDelete('cascade')->onUpdate('cascade');
+        //  $table->decimal('price');
+        //  $table->decimal('qty');
+        //  $table->timestamps();
+
 
     /**
      * Reverse the migrations.

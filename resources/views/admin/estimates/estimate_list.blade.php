@@ -6,7 +6,7 @@
 	
 {{-- Table starts from here --}}
 <div class="container wrapper">
-    <table class="table table-bordered table-hover" cellspacing="0" width="100%">
+    <table class="table data_table table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th class="col-md-2">SL</th>
@@ -39,10 +39,12 @@
 				<td>{{ $estdata->due_date }}</td>
 				<td>{{ $estdata->status }}</td>
 				<td>
+                   
 					<form action="{{ route('estimate.destroy',$estdata->id) }}" method="post" id="delete{{$estdata->id}}">
 						@csrf
 						@method('delete')
-					<a href="{{ route('estimate.edit',$estdata->id) }}"  class="text-success mr-2"><i class="fas fa-edit"></i></a>
+                        <a href="{{ route('estimate.show',$estdata->id) }}"  class="text-success mr-2"><i class="fas fa-eye"></i></a>
+                        <a href="{{ route('estimate.edit',$estdata->id) }}"  class="text-success mr-2"><i class="fas fa-edit"></i></a>
                     <a title="delete" onclick="document.getElementById('delete{{$estdata->id}}').submit()" class="text-danger"><i class="fas fa-trash-alt"></i></a>
 				</form>
 				</td>

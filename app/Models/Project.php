@@ -19,5 +19,11 @@ class Project extends Model
       return $this->hasMany(Expense::class,'customer_id','id');
    }
 
+   public function tasks(){
+       
+      return $this->hasMany(tasks::class);
+
+ }
+
 }
 
