@@ -34,4 +34,8 @@ class Customers extends Model
     {
         return $this->belongsTo('App\Models\User', 'assigned_to', 'id');
     }
+    public function contact()
+    {
+        return $this->hasMany(Contact::class);
+    }
 }

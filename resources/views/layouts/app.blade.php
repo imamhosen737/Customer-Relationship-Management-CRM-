@@ -220,24 +220,31 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-menu-item  ">
+                    <li class="sidebar-menu-item active open">
                         <a class="sidebar-menu-button" data-toggle="collapse" href="#customer">
                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                             <span class="sidebar-menu-text">Customer</span>
                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                         </a>
-                        <ul class="sidebar-submenu collapse show" id="customer">
-                            <li class="sidebar-menu-item ">
-                                <a class="sidebar-menu-button" href="{{route('customers.index')}}">
-                                    <span class="sidebar-menu-text">Customer List</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                        <ul class="sidebar-submenu collapse show" id="customer">
-                            <li class="sidebar-menu-item ">
+                        <ul class="sidebar-submenu collapse show " id="customer">
+                            <li class="sidebar-menu-item active">
                                 <a class="sidebar-menu-button" href="{{route('customers.create')}}">
                                     <span class="sidebar-menu-text">Add Customer</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{route('customers.index')}}">
+                                    <span class="sidebar-menu-text">Customers List</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{route('contacts.create')}}">
+                                    <span class="sidebar-menu-text">Add Contact</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{route('contacts.index')}}">
+                                    <span class="sidebar-menu-text">Contacts List</span>
                                 </a>
                             </li>
 
@@ -368,13 +375,7 @@
                     </li>
 
 
-
-
-
-
-
-
-                    <li class="sidebar-menu-item  ">
+                    <li class="sidebar-menu-item">
                         <a class="sidebar-menu-button" data-toggle="collapse" href="#estimate">
                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                             <span class="sidebar-menu-text">Estimates</span>
@@ -563,7 +564,23 @@
                                 </a>
                             </li>
                        </ul>
-                    </li>           
+                    </li>  
+                    
+                    <li class="sidebar-menu-item active open">
+                        <a class="sidebar-menu-button" data-toggle="collapse" href="#dashboards_menu">
+                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                            <span class="sidebar-menu-text">Estimate</span>
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        <ul class="sidebar-submenu collapse show " id="dashboards_menu">
+                            <li class="sidebar-menu-item active">
+                                <a class="sidebar-menu-button" href="{{route('cm_estimate')}}">
+                                    <span class="sidebar-menu-text">Estimate list</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
 
 
                     <li class="sidebar-menu-item active open">

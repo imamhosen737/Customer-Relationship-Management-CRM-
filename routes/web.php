@@ -1,33 +1,35 @@
 <?php
 
-use App\Http\Controllers\UserRegisterController;
-use App\Http\Controllers\LeadController;
-use App\Http\Controllers\LeadshowController;
+use App\Http\Controllers\IsAdmin;
+use Illuminate\Routing\RouteGroup;
+use App\Http\Controllers\Customers;
 
 // Mehedi:
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\MilestonesController;
-use App\Http\Controllers\TasksController;
+use App\Http\Controllers\IsCustomer;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaxController;
 
-use App\Http\Controllers\customer\ProposalApproveController;
-use App\Http\Controllers\proposalController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LeadController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\TasksController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EstimateController;
+use App\Http\Controllers\LeadshowController;
+use App\Http\Controllers\proposalController;
+use App\Http\Controllers\CustomersController;
+use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\departmentController;
+use App\Http\Controllers\MilestonesController;
+use App\Http\Controllers\UserRegisterController;
+use App\Http\Controllers\ProposalStatusController;
 use App\Http\Controllers\EstimatesStatusController;
 use App\Http\Controllers\ExpenseCategoryController;
-use App\Http\Controllers\departmentController;
-use App\Http\Controllers\ProposalStatusController;
-use App\Http\Controllers\TaxController;
-use App\Http\Controllers\UnitController;
-use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\customer\CustomerController;
-use App\Http\Controllers\ItemController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\IsAdmin;
-use App\Http\Controllers\IsCustomer;
-use App\Http\Controllers\Customers;
-use Illuminate\Routing\Route as RoutingRoute;
-use Illuminate\Routing\RouteGroup;
+use App\Http\Controllers\customer\ProposalApproveController;
+use App\Http\Controllers\customer\EstimateController as CustomerEstimate;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +64,9 @@ Route::Group(['prefix' => 'admin', 'middleware' => ['ChkAdmin']], function () {
 
     Route::get('/project/{id}/milestones',  [ProjectController::class, 'milestones'])->name('project.milestones');
 
-
+    Route::resource('/contacts', ContactController::class);
+    Route::resource('/customers', CustomersController::class);
+    Route::get('/customer_details/{id}', [CustomersController::class, 'details'])->name('customer_details');
 
     Route::resource('/users', UserRegisterController::class);
     Route::resource('/estimate', EstimateController::class);
@@ -95,6 +99,10 @@ Route::Group(['middleware' => ['ChkCustomer']], function () {
 
     Route::resource('customer', CustomerController::class);
 
+    Route::get('/estimate_list', [CustomerEstimate::class, 'index'])->name('cm_estimate');
+    Route::get('/estimate_View/{id}', [CustomerEstimate::class, 'show'])->name('cm_estimate_view');
+    Route::post('/estimate_accept/{id}', [CustomerEstimate::class, 'accept'])->name('cm_estimate_accept');
+    Route::post('/estimate_reject/{id}', [CustomerEstimate::class, 'reject'])->name('cm_estimate_reject');
     Route::get('/proposal/status',  [ProposalApproveController::class, 'status'])->name('proposals.status');
     Route::get('proposal/pending', [ProposalApproveController::class, 'pending'])->name('proposals.pending');
     Route::get('proposal/approved', [ProposalApproveController::class, 'approved'])->name('proposals.approved');

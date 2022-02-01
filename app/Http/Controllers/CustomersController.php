@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Unique;
 use App\Models\User;
+use App\Models\Contact;
 use App\Models\customers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rules\Unique;
 
 
 class CustomersController extends Controller
@@ -158,5 +159,12 @@ class CustomersController extends Controller
         File::delete(public_path($del));
         User::find($id)->delete();
         return redirect()->route('customers.index');
+    }
+
+    public function details($id)
+    {
+        $data = customers::find($id);
+        $dataCon = Contact::where('customer_id',$id)->get();
+        return view('admin.customer.customer_details', compact('data','dataCon'));
     }
 }
