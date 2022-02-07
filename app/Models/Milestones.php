@@ -11,7 +11,7 @@ class Milestones extends Model
     protected $table = "milestone";
 
     protected $fillable = [
-        'project_id','name','end_date','description','ordering','visible_to_customer','status',
+        'project_id','name','start_date','end_date','description','ordering','visible_to_customer','status',
     ];
 
     public function project()

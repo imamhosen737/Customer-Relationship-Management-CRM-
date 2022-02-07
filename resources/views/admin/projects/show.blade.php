@@ -6,9 +6,6 @@
   @section('content')
 
 
-
-
-
       <div class="container wrapper">
           <a href="{{ route('project.index') }}" class="btn btn-lg btn-link">Back to Project</a>
 
@@ -16,19 +13,19 @@
               <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
                   <li class="nav-item">
                       <a href="#project_overview" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-21"
-                          aria-selected="true"><span class="nav-link__count">01</span>
+                          aria-selected="true"><span class="nav-link__count">{{ $project_count }}</span>
                           Project Overview
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="{{ route('project.tasks', $id) }}" class="nav-link" aria-selected="false"><span
-                              class="nav-link__count">02</span>
+                              class="nav-link__count">{{ $task_count }}</span>
                           Tasks
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="{{ route('project.milestones', $id) }}" class="nav-link" aria-selected="false"><span
-                              class="nav-link__count">03</span>
+                              class="nav-link__count">{{ $milestone_count }}</span>
                           Milestones
                       </a>
                   </li>

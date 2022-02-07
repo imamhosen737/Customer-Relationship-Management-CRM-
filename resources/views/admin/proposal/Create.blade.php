@@ -116,16 +116,15 @@
                         <tbody id="kk">
                            
                         </tbody>
-                        <div class='col-md-offset-10'>
-                        <tr>
-                          
-                           <td class="text-right ">Total:
-                              <h5 class="sub_total"><strong>   </strong></h5>
-                           </td>
-                        
-                           
-                        </tr></div>
+                        <tfoot>
+                           <tr>
+                               <td colspan="5" class="text-right"> Grand Total = </td>
+                               <td colspan="1"><input type="text" class="sub_total" readonly></td>
+                           </tr>
+                       </tfoot>
                      </table>
+
+                       
                   </div>
                     
                 </section>
@@ -181,7 +180,7 @@
                     $(".qty").closest('tr').each(function(index, value) {
                          var ss = parseInt($(this).find('.total').text());
                          s += ss;
-                         $(".sub_total").text(s);
+                         $(".sub_total").val(s);
                     });
                }
 </script>

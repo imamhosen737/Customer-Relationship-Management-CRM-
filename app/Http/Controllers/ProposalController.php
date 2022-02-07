@@ -38,7 +38,7 @@ class ProposalController extends Controller
     {
         $contacts = customers::get();
         $data = Item::get();
-        $Item = User::get();
+        $Item = User::where('role', 'customer')->get();
         $dat = proposal::get();
         return view('admin.proposal.create', compact('contacts', 'data', 'Item', 'dat'));
     }
@@ -120,7 +120,7 @@ class ProposalController extends Controller
     {
 
         $contacts = proposal::find($id);
-        $user = User::get();
+        $user = User::where('role', 'user')->get();
         $item = Item::get();
         $customers = Customers::get();
         $ProposalItem = ProposalItem::where('proposal_id', $id)->get();

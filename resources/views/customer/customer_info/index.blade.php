@@ -12,7 +12,7 @@ Customer Detail
             {{ session()->get('success') }}
         </div>
     @endif
-    <table class="table table-bordered table-hover" cellspacing="0" width="100%">
+    <table class="table data_table table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th >##</th>

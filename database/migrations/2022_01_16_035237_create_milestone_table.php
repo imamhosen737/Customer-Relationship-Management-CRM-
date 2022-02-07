@@ -18,6 +18,7 @@ class CreateMilestoneTable extends Migration
             $table->bigInteger('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->string('name');
+            $table->date('start_date');
             $table->date('end_date');
             $table->string('description');
             $table->integer('ordering');

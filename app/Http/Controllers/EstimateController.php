@@ -134,7 +134,7 @@ class EstimateController extends Controller
     public function edit($id)
     {
         $itemm = Item::get();
-        $user = User::get();
+        $user = User::where('role', 'user')->get();
         $customer = Customer::get();
         $data = Estimate::find($id);
         $edit_item = EstimateItems::where('estimate_id', $id)->get();

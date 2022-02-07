@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title__extra')
+@section('page_title_extra')
 
 <div class="d-flex  justify-content-between">
     <span>Tasks List</span>
@@ -58,13 +58,44 @@
 		</thead>
 
 		<tbody>
+           @if(auth()->user()->role == 'customer')
+               @forelse ($datas as $key => $value)
 
-			@forelse ($datas as $key => $value)
+                            @if ($value->visible_to_customer == 'yes')
+                                <tr>
+                                    <td class="highlight">{{ $value->project_id }}</td>
+                                    <td class="highlight">{{ $value->project->name }}</td>
+                                    <td class="highlight">{{ $value->subject }}</td>
+                                    <td class="highlight">{{ $value->status }}</td>
+                                    <td class="highlight">{!! $value->description !!}</td>
+                                    <td class="highlight">{{ $value->start_date }}</td>
+                                    <td class="highlight">{{ $value->end_date }}</td>
+                                    <td class="highlight">{{ $value->priority }}</td>
+                                    <!-- <td class="highlight">{{ $value->visible_to_customer }}</td> -->
 
-       @if ($value->visible_to_customer == 'yes')
+                                    <td>
+                                        <form  action="{{url('admin/project/'.$projectId.'/tasks') }}/{{$value->id}}"
+                                        method="post">
+
+                                            <a href="{{url('admin/project/'.$projectId.'/tasks/'.$value->id.'/edit') }}" class="btn btn-sm btn-primary">Edit</a>
+
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
 
 
+                                            <button type="submit" class="btn btn-sm btn-danger" title="Delete tasks" onclick="return confirm('Are You sure to delete this?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endif
 
+
+                @empty
+                @endforelse
+
+
+            @else
+               @forelse ($datas as $key => $value)
 			<tr>
 
                 <td class="highlight">{{ $value->project_id }}</td>
@@ -91,9 +122,11 @@
 					</form>
 				</td>
 			</tr>
-			@endif
 			@empty
 			@endforelse
+        @endif
+
+
 		</tbody>
 	</table>
 </div>

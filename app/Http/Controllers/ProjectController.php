@@ -58,7 +58,15 @@ class ProjectController extends Controller
     public function show($id)
     {
         $contacts = Project::find($id);
-        return view('admin.Projects.show', compact('contacts', 'id'));
+        $project= Project::get();
+        $project_count = count($project);
+        $milestone= Milestones::where('project_id', $id)->get();
+        $milestone_count = count($milestone);
+        $task= Tasks::where('project_id', $id)->get();
+        $task_count=count($task);
+        // dd($task_count);
+        // exit;
+        return view('admin.Projects.show', compact('contacts', 'id','task_count','milestone_count','project_count'));
     }
     public function edit($id)
     {

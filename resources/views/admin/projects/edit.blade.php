@@ -30,7 +30,7 @@
          <select  id="company_name" class="custom-select" name='customer_id'>
 
                          @foreach ($custom as $cont)  
-                        <option value="{{$cont->id}}" {{ $contacts->customs->company_name==$cont->company_name ? 'selected': ''}}>{{$cont->company_name}}</option>
+                        <option value="{{$cont->id}}" {{ $contacts->customer->company_name==$cont->company_name ? 'selected': ''}}>{{$cont->company_name}}</option>
                           @endforeach
                    </select>
                 </div>
