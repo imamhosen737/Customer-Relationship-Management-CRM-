@@ -25,14 +25,16 @@ class TasksRequest extends FormRequest
     {
         return [
             'project_id' => 'required',
+            'user_id' => 'required',
+            'milestone_id' => 'required',
             'subject' => 'required',
+            'duration' => 'required',
             'status' => 'required',
             'description' => 'required',
             'start_date' => 'required',
             'status' => 'required',
             'end_date' => 'required',
             'priority' => 'required',
-            'visible_to_customer' => 'required',
            
         ];
     }

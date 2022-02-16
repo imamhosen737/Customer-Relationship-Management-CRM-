@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tasks;
+use App\Models\User;
 use App\Models\Project;
+use App\Models\Milestones;
 use Illuminate\Http\Request;
 use App\Http\Requests\TasksRequest;
 
@@ -14,14 +16,17 @@ class TasksController extends Controller
 
     public function index()
     {
-        $datas = Tasks::all();
+        $datas = Tasks::get();
         return view('admin.Tasks.index', compact('datas'));
     }
+
 
     public function create($projectId)
     {
         $project_data = project::get();
-        return view('admin.Tasks.create', compact('project_data', 'projectId'));
+        $User_data = User::where('role', 'admin')->get();
+        $Milestone_data = Milestones::get();
+        return view('admin.tasks.create', compact('project_data', 'User_data', 'Milestone_data', 'projectId'));
     }
 
 
@@ -35,7 +40,10 @@ class TasksController extends Controller
         try {
             $data = new Tasks();
             $data->project_id = $request->project_id;
+            $data->user_id = $request->user_id;
+            $data->milestone_id = $request->milestone_id;
             $data->subject = $request->subject;
+            $data->duration = $request->duration;
             $data->status = $request->status;
             $data->description = $request->description;
             $data->start_date = $request->start_date;
@@ -45,7 +53,8 @@ class TasksController extends Controller
             $data->save();
             return redirect()->route('tasks.create', $request->project_id)->with('success', 'Tasks created successfully');
         } catch (\Exception $e) {
-            return redirect()->route('tasks.create', $request->project_id) - with('error', 'tasks not created successfully');
+            return $e;
+            return redirect()->route('tasks.create', $request->project_id)->with('error', 'Tasks not created successfully');
         }
     }
 
@@ -55,7 +64,9 @@ class TasksController extends Controller
     {
         $tasks = Tasks::find($id);
         $project_data = Project::get();
-        return view('admin.tasks.edit', compact('tasks', 'project_data', 'projectId'));
+        $User_data = User::get();
+        $Milestone_data = Milestones::get();
+        return view('admin.tasks.edit', compact('tasks', 'projectId', 'project_data', 'User_data', 'Milestone_data'));
     }
 
 
@@ -70,7 +81,10 @@ class TasksController extends Controller
         try {
             $data = Tasks::find($id);
             $data->project_id = $request->project_id;
+            $data->user_id = $request->user_id;
+            $data->milestone_id = $request->milestone_id;
             $data->subject = $request->subject;
+            $data->duration = $request->duration;
             $data->status = $request->status;
             $data->description = $request->description;
             $data->start_date = $request->start_date;
@@ -78,7 +92,7 @@ class TasksController extends Controller
             $data->visible_to_customer = $visible_to_customer;
             $data->priority = $request->priority;
             $data->save();
-            return redirect()->route('project.tasks',  $data->project_id)->with('success', 'tasks updated successfully');
+            return redirect()->route('project.tasks',  $data->project_id)->with('success', 'Tasks updated successfully');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -89,7 +103,7 @@ class TasksController extends Controller
     {
         try {
             Tasks::destroy($id);
-            return redirect()->route('project.tasks', $projectId)->with('danger', 'tasks deleted successfully');
+            return redirect()->route('project.tasks', $projectId)->with('danger', 'Tasks deleted successfully');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

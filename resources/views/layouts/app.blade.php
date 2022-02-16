@@ -23,8 +23,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Table -->
     <link type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+
+   
     <!-- Perfect Scrollbar -->
     <link type="text/css" href="{{ asset('assets/vendor/perfect-scrollbar.css') }}" rel="stylesheet">
+
+     <!-- datatable responsive css-->
+     <link type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" rel="stylesheet">
+
 
     <!-- Toastr -->
     <link type="text/css" href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet">
@@ -233,7 +239,8 @@
                                         </a>
                                         <ul class="sidebar-submenu collapse  " id="customer">
                                             <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button" href="{{ route('customers.create') }}">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('customers.create') }}">
                                                     <span class="sidebar-menu-text">Add Customer</span>
                                                 </a>
                                             </li>
@@ -469,6 +476,23 @@
                                         </ul>
                                     </li>
 
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#invoice">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Invoice</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse" id="invoice">
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button" href="{{ route('invoice.index') }}">
+                                                    <span class="sidebar-menu-text">View Invoice</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+
+
                                     <li class="sidebar-menu-item  ">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#lead">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
@@ -548,7 +572,7 @@
                                             <span class="sidebar-menu-text">Dashboards</span>
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
-                                        <ul class="sidebar-submenu collapse  " id="dashboards_menu">
+                                        <ul class="sidebar-submenu collapse" id="dashboards_menu">
                                             <li class="sidebar-menu-item ">
                                                 <a class="sidebar-menu-button" href="{{ route('dashboard') }}">
                                                     <span class="sidebar-menu-text">Dashboard</span>
@@ -558,14 +582,14 @@
                                         </ul>
                                     </li>
 
-                                    <li class="sidebar-menu-item  ">
+                                    <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#proposal">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                                             <span class="sidebar-menu-text">Proposals</span>
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
 
-                                        <ul class="sidebar-submenu collapse  ">
+                                        <ul class="sidebar-submenu collapse" id="proposal" >
                                             <li class="sidebar-menu-item ">
                                                 <a class="sidebar-menu-button"
                                                     href="{{ route('proposals.index') }}">
@@ -573,20 +597,41 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button" href="{{ route('proposals.status') }}">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('proposals.status') }}">
                                                     <span class="sidebar-menu-text">View Proposal Status</span>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
 
-                                    <li class="sidebar-menu-item  ">
+
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#invoice">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Invoice</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+
+                                        <ul class="sidebar-submenu collapse" id="invoice" >
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('customer_invoice.index') }}">
+                                                    <span class="sidebar-menu-text">View All Invoices</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+
+
+                                    <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#dashboards_menu">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                                             <span class="sidebar-menu-text">Estimate</span>
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
-                                        <ul class="sidebar-submenu collapse  " id="dashboards_menu">
+                                        <ul class="sidebar-submenu collapse" id="dashboards_menu">
                                             <li class="sidebar-menu-item ">
                                                 <a class="sidebar-menu-button" href="{{ route('cm_estimate') }}">
                                                     <span class="sidebar-menu-text">Estimate list</span>
@@ -597,13 +642,13 @@
                                     </li>
 
 
-                                    <li class="sidebar-menu-item  ">
+                                    <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#customer">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                                             <span class="sidebar-menu-text">Customer</span>
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
-                                        <ul class="sidebar-submenu collapse  " id="customer">
+                                        <ul class="sidebar-submenu collapse" id="customer">
                                             <li class="sidebar-menu-item ">
                                                 <a class="sidebar-menu-button" href="{{ route('customer.index') }}">
                                                     <span class="sidebar-menu-text">My Info</span>
@@ -657,6 +702,7 @@
     <!-- DOM Factory -->
     <script src="{{ asset('assets/vendor/dom-factory.js') }}"></script>
 
+    
     {{-- toastr --}}
     <script src="{{ asset('assets/vendor/toastr.min.js') }}"></script>
 
@@ -671,6 +717,11 @@
 
     <!-- table -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <!-- datatable responsive js-->
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
+
     {{-- file type name --}}
     <script>
         $("input[type=file]").change(function() {
@@ -688,7 +739,11 @@
     {{-- Table --}}
     <script>
         $(document).ready(function() {
-            $('.data_table').DataTable()
+            $('.data_table').DataTable({
+                responsive:true,
+                serverSide: false
+            });
+            
         });
     </script>
     {{-- Ck editor --}}

@@ -15,6 +15,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EstimateController;
 use App\Http\Controllers\LeadshowController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\ProposalStatusController;
 use App\Http\Controllers\EstimatesStatusController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\customer\CustomerController;
+use App\Http\Controllers\customer\InvoiceStatusController;
 use App\Http\Controllers\customer\ProposalApproveController;
 use App\Http\Controllers\customer\EstimateController as CustomerEstimate;
 
@@ -49,10 +51,12 @@ Route::Group(['prefix' => 'admin', 'middleware' => ['ChkAdmin']], function () {
     Route::get('/project/{id}/tasks',  [ProjectController::class, 'tasks'])->name('project.tasks');
 
     // tasks
-    Route::resource('/project/tasks', TasksController::class)->except(['create', 'destroy', 'edit']);
+
     Route::get('/project/tasks/create/{project_id}', [TasksController::class, 'create'])->name('tasks.create');
     Route::get('/project/{project_id}/tasks/{task_id}/edit', [TasksController::class, 'edit'])->name('tasks.edit');
     Route::delete('/project/{project_id}/tasks/{task_id}', [TasksController::class, 'destroy'])->name('tasks.destroy');
+    Route::resource('project/tasks', TasksController::class)->except(['create', 'destroy', 'edit']);
+
 
     //milestones
     Route::resource('/project/milestones', MilestonesController::class)->except(['create', 'destroy', 'edit']);
@@ -92,6 +96,11 @@ Route::Group(['prefix' => 'admin', 'middleware' => ['ChkAdmin']], function () {
     Route::get('/getPrice/{id}', [proposalController::class, 'getPrice'])->name('getPrice');
     // route for lead
     Route::resource('/leads', LeadshowController::class);
+    // route for invoice:
+
+    // Route::post('sendmail/invoice/{id}', [InvoiceController::class, 'mail_send'] )->name('mail');
+    Route::resource('/invoice', InvoiceController::class);
+    Route::get('/est_invoice/{id}/{estimate_id}', [InvoiceController::class, 'estimate_invoice'])->name('est_invoice');
 });
 
 Route::Group(['middleware' => ['ChkCustomer']], function () {
@@ -108,8 +117,9 @@ Route::Group(['middleware' => ['ChkCustomer']], function () {
     Route::get('proposal/approved', [ProposalApproveController::class, 'approved'])->name('proposals.approved');
     Route::get('proposal/declined', [ProposalApproveController::class, 'declined'])->name('proposals.declined');
     Route::resource('/proposals', ProposalApproveController::class);
-
     Route::get('/proposalDownload/{id}', [ProposalApproveController::class, 'printToPdf'])->name('proposalDownload');
+
+    Route::resource('/customer_invoice', InvoiceStatusController::class);
 });
 
 

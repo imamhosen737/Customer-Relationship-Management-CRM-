@@ -33,4 +33,9 @@ class Item extends Model
     {
         return $this->hasMany(ProposalItem::class);
     }
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
+    }
 }

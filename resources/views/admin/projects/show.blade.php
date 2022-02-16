@@ -67,7 +67,7 @@
               <div class="card">
                   <div class="card-body tab-content">
                       <div class="tab-pane active show fade" id="project_overview">
-                          <table class="table  table-bordered table-hover" cellspacing="0" width="100%">
+                          <table class="table data_table table-bordered table-hover" cellspacing="0" width="100%">
                               <thead>
                                   <tr>
                                       <th class="col-md-2">Name</th>

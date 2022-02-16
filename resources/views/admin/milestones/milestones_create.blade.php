@@ -40,7 +40,7 @@
             @csrf
 
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                     <label for="project_name"  class="form-label">Select Project</label>
                     <select class="form-control" name="project_id" id="project_name">
                         @forelse ($project_data as $data )
@@ -50,11 +50,15 @@
                         @endforelse
                     </select>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                     <label for="milestone_name"  class="form-label">Milestones name</label>
                     <input type="text" name='name' class="form-control" id="milestone_name">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
+                    <label for="start_date"  class="form-label">Start Date</label>
+                    <input type="date" name='start_date' class="form-control" id="start_date">
+                    </div>
+                    <div class="form-group col-md-6">
                     <label for="end_date"  class="form-label">End Date</label>
                     <input type="date" name='end_date' class="form-control" id="end_date">
                     </div>

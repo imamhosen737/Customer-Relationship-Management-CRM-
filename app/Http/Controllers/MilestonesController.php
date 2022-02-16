@@ -39,24 +39,24 @@ class MilestonesController extends Controller
      */
     public function store(MilestoneRequest $request)
     {
-       
-        try{
+
+        try {
             if ($request->visible_to_customer == 'on') {
-                        $visible_to_customer = "yes";
-                    } else {
-                        $visible_to_customer = "no";
-                    }
+                $visible_to_customer = "yes";
+            } else {
+                $visible_to_customer = "no";
+            }
             $data = new Milestones();
             $data->project_id = $request->project_id;
             $data->name = $request->name;
+            $data->start_date = $request->start_date;
             $data->end_date = $request->end_date;
             $data->description = $request->description;
             $data->visible_to_customer = $visible_to_customer;
             $data->ordering = $request->ordering;
             $data->save();
             return redirect()->route('milestones.milestones_create', $request->project_id);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
             return redirect()->route('milestones.milestones_create', $request->project_id);
         }
@@ -97,6 +97,7 @@ class MilestonesController extends Controller
             $data = Milestones::find($id);
             $data->project_id = $request->project_id;
             $data->name = $request->name;
+            $data->end_date = $request->start_date;
             $data->end_date = $request->end_date;
             $data->description = $request->description;
             $data->visible_to_customer = $visible_to_customer;

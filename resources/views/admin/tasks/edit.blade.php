@@ -9,8 +9,9 @@
         <form action="{{route('tasks.update', $tasks->id)}}" method="post">
             {!! csrf_field() !!}
             {{ method_field('put') }}
-            <div class="form-row">  
-                <div class="form-group col-md-4">
+            <div class="form-row">
+
+                <div class="form-group col-md-2">
                     <label for="project_name"> Select Project</label><br>
                     <select class="form-control" name="project_id" id="project_name">
                           @foreach($project_data as $project)
@@ -19,18 +20,49 @@
                     </select>
                  </div>
 
-                <div class="form-group col-md-4">
+                  <div class="form-group col-md-2">
+                    <label for="user_name"> Select user</label><br>
+                    <select class="form-control" name="user_id" id="user_name">
+                            @forelse ($User_data as $tata )
+                                <option value="{{$tata->id}}" {{$tata->id == $tasks->user_id ? 'selected' : ''}}">{{$tata->name}}</option>
+                            @empty
+
+                            @endforelse
+                </select>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="milestone_name"> Select milestone</label><br>
+                    <select class="form-control" name="milestone_id" id="milestone_name">
+                            @forelse ($Milestone_data as $m )
+                                <option value="{{$m->id}}" {{$m->id == $tasks->milestone_id ? 'selected' : ''}}">{{$m->name}}</option>
+                            @empty
+
+                            @endforelse
+                    </select>
+                </div>
+
+                <div class="form-group col-md-2">
                     <label for="subject">Subject</label>
                     <input type="text" name='subject' value="{{$tasks->subject}}" class="form-control" id="tasks_subject">
-                        <input type="hidden" name="tasks_id" value="{{$tasks->id}}">
-                </div> 
+                    <input type="hidden" name="tasks_id" value="{{$tasks->id}}">
+                </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
+                    <label for="duration">Duration</label>
+                    <input type="text" name='duration' value="{{$tasks->duration}}" class="form-control" id="tasks_duration">
+                    <input type="hidden" name="tasks_id" value="{{$tasks->id}}">
+                </div>
+
+                <div class="form-group col-md-2">
                     <label for="status">Status</label>
-
                     <select name="status" id="status" class="custom-select" name="status">
-                        <option value="active"{{$tasks->status =='active' ? 'selected' : ''}}>Active</option>
-                        <option value="inactive"{{$tasks->status == 'inkkactive' ? 'selected' : ''}}>Inactive</option>
+                        <option value="pending"{{$tasks->status =='pending' ? 'selected' : ''}}>Pending</option>
+                        <option value="in_progress"{{$tasks->status == 'in_progress' ? 'selected' : ''}}>In_progress</option>
+
+                        <option value="testing"{{$tasks->status =='testing' ? 'selected' : ''}}>Testing</option>
+                        <option value="feedback"{{$tasks->status == 'feedback' ? 'selected' : ''}}>Feedback</option>
+                        <option value="complete"{{$tasks->status == 'complete' ? 'selected' : ''}}>Complete</option>
                     </select>
                 </div>
             </div>
@@ -44,7 +76,7 @@
             </div>
 
 
-            <div class="form-row">
+        <div class="form-row">
             <div class="form-group col-md-4">
                <label for="start_date"  class="form-label">Start Date</label>
                 <input type="date" class="form-control" name="start_date" id="start_date" value="{{$tasks->start_date}}" placeholder="Start_date">
@@ -57,10 +89,9 @@
             
             <div class="form-group col-md-4">
                 <label for="priority">Priority</label>
-                <select name="priority" class="form-control" id="priority">
-                    <option value="low"{{$tasks->Priority == 'low' ? 'selected' : ''}}>Low</option>            
-                    <option value="medium"{{$tasks->Priority == 'medium' ? 'selected' : ''}}>Medium</option>
-                    <option value="high"{{$tasks->Priority == 'high' ? 'selected' : ''}}>High</option>
+                <select name="priority" class="custom-select" id="priority">
+                    <option value="low"{{$tasks->priority == 'low' ? 'selected' : ''}}>Low</option><option value="medium"{{$tasks->priority == 'medium' ? 'selected' : ''}}>Medium</option>
+                    <option value="high"{{$tasks->priority == 'high' ? 'selected' : ''}}>High</option>
                 </select>
             </div>        
         </div>

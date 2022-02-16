@@ -17,8 +17,8 @@ class Customers extends Model
         'phone',
         'address',
         'vat_number',
-        'city', 
-        'zip', 
+        'city',
+        'zip',
         'country'
     ];
     public function user()
@@ -37,5 +37,10 @@ class Customers extends Model
     public function contact()
     {
         return $this->hasMany(Contact::class);
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'customer_id', 'id');
     }
 }

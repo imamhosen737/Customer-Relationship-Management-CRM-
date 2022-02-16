@@ -35,6 +35,7 @@
                         <tr>
                             <th class="col-md-2">Project Name </th>
                             <th class="col-md-2">Name</th>
+                            <th class="col-md-2">Start Date</th>
                             <th class="col-md-2">End_date</th>
                             <th class="col-md-2">Description</th>
                             <th class="col-md-2">Ordering</th>
@@ -57,6 +58,7 @@
                                 <tr>
                                     <td>{{ $value->project->name }}</td>
                                     <td>{{ $value->name }}</td>
+                                    <td>{{ $value->start_date }}</td>
                                     <td>{{ $value->end_date }}</td>
                                     <td>{{ $value->description }}</td>
                                     <td>{{ $value->ordering }}</td>
@@ -96,6 +98,7 @@
                                <tr>
                                     <td>{{ $value->project->name }}</td>
                                     <td>{{ $value->name }}</td>
+                                    <td>{{ $value->start_date }}</td>
                                     <td>{{ $value->end_date }}</td>
                                     <td>{{ $value->description }}</td>
                                     <td>{{ $value->ordering }}</td>

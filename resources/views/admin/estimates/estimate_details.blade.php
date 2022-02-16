@@ -5,15 +5,15 @@
 @section('content')
     <div class="container">
 
-        
+
 
         <div class="row">
-			<div class="col-md-6 mt-5">
-				<b>Street Address:</b> <br>
-				<b>Dhanmondi, Zigatola</b> <br>
-				<b>Zigatola, Dhaka 1205</b> <br>
-				<b>Phone: 01839*******</b> <br>
-			</div>
+            <div class="col-md-6 mt-5">
+                <b>Street Address:</b> <br>
+                <b>Dhanmondi, Zigatola</b> <br>
+                <b>Zigatola, Dhaka 1205</b> <br>
+                <b>Phone: 01839*******</b> <br>
+            </div>
             <div class="col-md-4 offset-md-2">
                 <h4 class="text-center">ESTIMATE</h4>
                 <table class="table table-bordered text-center">
@@ -122,6 +122,9 @@
                             </tr>
                         </tbody>
                     </table>
+                    <a href="{{ route('est_invoice',[$data->customer_id,$data->id]) }}"
+                        class="btn btn-block btn-success">Convert Invoice</a>
+                        
                 </div>
             </div>
         </div>
