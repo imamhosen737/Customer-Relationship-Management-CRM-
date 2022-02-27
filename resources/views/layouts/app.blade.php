@@ -230,7 +230,21 @@
 
                                         </ul>
                                     </li>
-
+                                    
+                                    <li class="sidebar-menu-item  ">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#lead">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Leads</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse  " id="lead">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button" href="{{ route('leads.index') }}">
+                                                    <span class="sidebar-menu-text">Show Lead</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li class="sidebar-menu-item  ">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#customer">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
@@ -263,6 +277,147 @@
                                         </ul>
                                     </li>
 
+                                    <li class="sidebar-menu-item  ">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#proposal">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Proposals</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse  " id="proposal">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button" href="{{ route('proposal.index') }}">
+                                                    <span class="sidebar-menu-text">Proposal List</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="sidebar-submenu collapse  " id="proposal">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('proposal_status.index') }}">
+                                                    <span class="sidebar-menu-text">Panding Proposals</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="sidebar-submenu collapse  " id="proposal">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('approved_proposal') }}">
+                                                    <span class="sidebar-menu-text">Accepted Proposals</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="sidebar-submenu collapse  " id="proposal">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('declined_proposal') }}">
+                                                    <span class="sidebar-menu-text">Declined Proposals</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#estimate">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Estimates</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse  " id="estimate">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button" href="{{ route('estimate.index') }}">
+                                                    <span class="sidebar-menu-text">Estimates List</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="sidebar-submenu collapse  " id="estimate">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('estimate.create') }}">
+                                                    <span class="sidebar-menu-text">Add Estimate</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="sidebar-submenu collapse  " id="estimate">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('estimate_status.index') }}">
+                                                    <span class="sidebar-menu-text">Panding Estimates</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="sidebar-submenu collapse  " id="estimate">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('approved_estimate') }}">
+                                                    <span class="sidebar-menu-text">Accepted Estimates</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="sidebar-submenu collapse  " id="estimate">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button"
+                                                    href="{{ route('declined_estimate') }}">
+                                                    <span class="sidebar-menu-text">Declined Estimates</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#invoice">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Invoice</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse" id="invoice">
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button" href="{{ url('admin/invoice') }}">
+                                                    <span class="sidebar-menu-text">View Invoice</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item  ">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#payment">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Payment</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse" id="payment">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button" href="{{ route('payments.index') }}">
+                                                    <span class="sidebar-menu-text">Payment List</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="sidebar-submenu collapse" id="payment">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button" href="{{ route('paymentreceived.index') }}">
+                                                    <span class="sidebar-menu-text">Payment Report</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item  ">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#project">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Project</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse  " id="project">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button" href="{{ route('project.index') }}">
+                                                    <span class="sidebar-menu-text">All Project</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item ">
+                                        <a class="sidebar-menu-button"  href="{{route('task_list.index')}}">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">Task List</span>
+                                        </a>
+    
+                                    </li>
 
                                     <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#tax_rule">
@@ -332,108 +487,18 @@
                                         </ul>
                                     </li>
 
-                                    <li class="sidebar-menu-item  ">
-                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#proposal">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                                            <span class="sidebar-menu-text">Proposals</span>
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu collapse  " id="proposal">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button" href="{{ route('proposal.index') }}">
-                                                    <span class="sidebar-menu-text">Proposal List</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="sidebar-submenu collapse  " id="proposal">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button"
-                                                    href="{{ route('proposal_status.index') }}">
-                                                    <span class="sidebar-menu-text">Panding Proposals</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="sidebar-submenu collapse  " id="proposal">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button"
-                                                    href="{{ route('approved_proposal') }}">
-                                                    <span class="sidebar-menu-text">Accepted Proposals</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="sidebar-submenu collapse  " id="proposal">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button"
-                                                    href="{{ route('declined_proposal') }}">
-                                                    <span class="sidebar-menu-text">Declined Proposals</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                 
+
+                                    
+
+                                    
+                                    
 
 
-                                    <li class="sidebar-menu-item  ">
-                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#project">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                                            <span class="sidebar-menu-text">Project</span>
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu collapse  " id="project">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button" href="{{ route('project.index') }}">
-                                                    <span class="sidebar-menu-text">All Project</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    
 
 
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#estimate">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                                            <span class="sidebar-menu-text">Estimates</span>
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu collapse  " id="estimate">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button" href="{{ route('estimate.index') }}">
-                                                    <span class="sidebar-menu-text">Estimates List</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="sidebar-submenu collapse  " id="estimate">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button"
-                                                    href="{{ route('estimate.create') }}">
-                                                    <span class="sidebar-menu-text">Add Estimate</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="sidebar-submenu collapse  " id="estimate">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button"
-                                                    href="{{ route('estimate_status.index') }}">
-                                                    <span class="sidebar-menu-text">Panding Estimates</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="sidebar-submenu collapse  " id="estimate">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button"
-                                                    href="{{ route('approved_estimate') }}">
-                                                    <span class="sidebar-menu-text">Accepted Estimates</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="sidebar-submenu collapse  " id="estimate">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button"
-                                                    href="{{ route('declined_estimate') }}">
-                                                    <span class="sidebar-menu-text">Declined Estimates</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    
 
 
 
@@ -459,7 +524,20 @@
                                             </li>
                                         </ul>
                                     </li>
-
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#user">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                            <span class="sidebar-menu-text">User</span>
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu collapse  " id="user">
+                                            <li class="sidebar-menu-item ">
+                                                <a class="sidebar-menu-button" href="{{ route('users.index') }}">
+                                                    <span class="sidebar-menu-text">User List</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li class="sidebar-menu-item  ">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#drpartment">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
@@ -476,37 +554,10 @@
                                         </ul>
                                     </li>
 
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#invoice">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                                            <span class="sidebar-menu-text">Invoice</span>
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu collapse" id="invoice">
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="{{ route('invoice.index') }}">
-                                                    <span class="sidebar-menu-text">View Invoice</span>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </li>
+                                   
 
 
-                                    <li class="sidebar-menu-item  ">
-                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#lead">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                                            <span class="sidebar-menu-text">Leads</span>
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu collapse  " id="lead">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button" href="{{ route('leads.index') }}">
-                                                    <span class="sidebar-menu-text">Show Lead</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    
 
 
 
@@ -535,20 +586,7 @@
                                     </li>
 
 
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" data-toggle="collapse" href="#user">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                                            <span class="sidebar-menu-text">User</span>
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu collapse  " id="user">
-                                            <li class="sidebar-menu-item ">
-                                                <a class="sidebar-menu-button" href="{{ route('users.index') }}">
-                                                    <span class="sidebar-menu-text">User List</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    
 
 
                                 </ul>

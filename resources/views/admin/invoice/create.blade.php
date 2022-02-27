@@ -1,15 +1,14 @@
 @extends('layouts.app')
+@section('page_title')
+Add Invoice
+    
+@endsection
+
 @section('page_title_extra')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Invoice</li>
-        </ol>
-    </nav>
-    <div class="d-flex justify-content-between">
-        <h1 class="m-0"><span>Add Invoice</span></h1>
-        <a href="{{ route('invoice.index') }}" class="btn btn-md btn-blue">Back to Invoice List</a>
-    </div>
+<div class="d-flex justify-content-between">
+    <h1 class="m-0"><span></span></h1>
+    <a href="{{ url('admin/invoice') }}" class="btn btn-md btn-blue">Back to Invoice List</a>
+</div>
 @endsection
 
 @section('content')
@@ -23,7 +22,7 @@
                 </button>
             </div>
         @endif
-        <form action="{{ route('invoice.store') }}" class="needs-validation" novalidate method="post">
+        <form action="{{ route('invoice.store') }}" class="needs-validation" novalidate method="POST">
             @csrf
 
 
@@ -85,9 +84,12 @@
                             @endif
                         </div>
                         <div class="form-group col-md-6 recurring-block" style="display: none;">
-                            <label for="recurring "></label><br>
-                            <input type="text" required name="recurring" id="recurring" class="form-control recurring "
+                            <label for="recurring "></label>
+                            <input type="number" step="1" min="1" required name="recurring" id="recurring" class="form-control recurring "
                                 style="margin-top: 7px" placeholder="type(in days)">
+                                @if ($errors->has('recurring'))
+                                      <div style="color: red; font-weight:bold">{{ $errors->first('recurring') }}</div>
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -167,6 +169,22 @@
 
     <script>
         $(document).ready(function() {
+
+            $("#recurring").on('keyup change', function() {
+           var floatValue = parseFloat($(this).val());
+           var intValue = parseInt($(this).val());
+            if (intValue == 0 || $(this).val() == "") {
+                toastr.warning("Recurring days must be 1 or greater !", "Oops !");
+                // $(this).val(1)
+                return false;
+            }
+
+           if (floatValue - intValue != 0) {
+               toastr.warning("Recurring days must be integer !", "Oops !");
+               $(this).val(intValue)
+           }
+        });
+
 
 
             $('.invoice-type').on('change', function() {

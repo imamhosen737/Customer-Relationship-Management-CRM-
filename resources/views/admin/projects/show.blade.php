@@ -1,113 +1,135 @@
-  @extends('layouts.app')
-  @section('page_title')
-      <span>View</span>
-  @endsection
+@extends('layouts.app')
+@section('page_title')
+<span>Project overview</span>
+@endsection
 
-  @section('content')
+@section('content')
+
+<a href="{{ route('project.index') }}" class="btn btn-secondary">Back To Projects</a>
+<a href="{{ route('project.tasks', $id) }}" class="btn btn-info">Task ({{ $task_count }})</a>
+<a href="{{ route('project.milestones', $id) }}" class="btn btn-info">Milestone ({{ $milestone_count }})</a>
+<a href="{{ route('gantt',$contacts->id) }}" class="btn btn-info">Gantt Chart</a>
+
+<div class="container mt-5">
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th width='30%'>Project name:</th>
+            <td>{{$projects->name}}</td>
+          </tr>
+          <tr>
+            <th>Description:</th>
+            <td>{{$projects->discription}}</td>
+          </tr>
+          <tr>
+            <th>Status:</th>
+            <td>{{$projects->status}}</td>
+          </tr>
+          <tr>
+            <th>Start Date:</th>
+            <td>{{$projects->start_date}}</td>
+          </tr>
+          <tr>
+            <th>Deadline:</th>
+            <td>{{$projects->end_date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <style>
+        #chartdiv {
+          width: 100%;
+          height: 500px;
+        }
+      </style>
+      <!-- Resources -->
+      <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+      <!-- Chart code -->
+      <script>
+        am5.ready(function() {
+
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+var root = am5.Root.new("chartdiv");
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+var chart = root.container.children.push(
+  am5percent.PieChart.new(root, {
+    endAngle: 270
+  })
+);
+
+// Create series
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+var series = chart.series.push(
+  am5percent.PieSeries.new(root, {
+    valueField: "value",
+    categoryField: "category",
+    endAngle: 270
+  })
+);
+
+series.states.create("hidden", {
+  endAngle: -90
+});
+@php
+$remaining=$total_task-$p_t_spend;
+@endphp
+// Set data
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+series.data.setAll([{
+  category: "Remaining",
+  value: {{$remaining}}
+}, {
+  category: "Completed",
+  value: {{$p_t_spend}}
+}, ]);
+
+series.appear(1000, 100);
+
+}); // end am5.ready()
+      </script>
+
+      <!-- HTML -->
+      <div id="chartdiv"></div>
+    </div>
+  </div>
+  <h2 class="text-center mt-5">Task Progress</h2>
+  <div class="row mt-5">
+    @foreach ($proj_task as $pt)
+    @php
+    $p_spend=0;
+    $time_sheet=DB::table('timesheets')->where('task_id',$pt->id)->get();
+    foreach ($time_sheet as $t) {
+    $from_time = strtotime($t->start_time);
+    $to_time = strtotime($t->end_time);
+    $a=round(abs($to_time - $from_time) /60,2);
+    $p_spend+=$a;
+    }
+    $prog=($p_spend/$pt->duration)*100;
+    @endphp
+    <p class="mt-5">{{$pt->subject}}</p>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: {{$prog}}%" aria-valuenow="{{$prog}}" aria-valuemin="0"
+        aria-valuemax="{{$pt->duration}}"></div>
+    </div>
+    @endforeach
+
+  </div>
+</div>
 
 
-      <div class="container wrapper">
-          <a href="{{ route('project.index') }}" class="btn btn-lg btn-link">Back to Project</a>
-
-          <div class="z-0">
-              <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
-                  <li class="nav-item">
-                      <a href="#project_overview" class="nav-link active" data-toggle="tab" role="tab" aria-controls="tab-21"
-                          aria-selected="true"><span class="nav-link__count">{{ $project_count }}</span>
-                          Project Overview
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{{ route('project.tasks', $id) }}" class="nav-link" aria-selected="false"><span
-                              class="nav-link__count">{{ $task_count }}</span>
-                          Tasks
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{{ route('project.milestones', $id) }}" class="nav-link" aria-selected="false"><span
-                              class="nav-link__count">{{ $milestone_count }}</span>
-                          Milestones
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#tab-23" class="nav-link" data-toggle="tab" role="tab" aria-selected="false"><span
-                              class="nav-link__count">04</span>
-                          Timesheets
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#tab-23" class="nav-link" data-toggle="tab" role="tab" aria-selected="false"><span
-                              class="nav-link__count">05</span>
-                          Files
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#tab-23" class="nav-link" data-toggle="tab" role="tab" aria-selected="false"><span
-                              class="nav-link__count">06</span>
-                          Discussions
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#tab-23" class="nav-link" data-toggle="tab" role="tab" aria-selected="false"><span
-                              class="nav-link__count">07</span>
-                          Tickets
-                      </a>
-                  </li>
-
-                  <li class="nav-item">
-                      <a href="#tab-24" class="nav-link disabled" data-toggle="tab" role="tab" aria-selected="false"><span
-                              class="nav-link__count">0</span>
-                          No Show
-                      </a>
-                  </li>
-              </ul>
-
-
-
-              <div class="card">
-                  <div class="card-body tab-content">
-                      <div class="tab-pane active show fade" id="project_overview">
-                          <table class="table data_table table-bordered table-hover" cellspacing="0" width="100%">
-                              <thead>
-                                  <tr>
-                                      <th class="col-md-2">Name</th>
-                                      <th class="col-md-2">Status</th>
-                                      <th class="col-md-2">Discription</th>
-                                      <th class="col-md-2">Start date</th>
-                                      <th class="col-md-2">End date</th>
-                                      <th class="col-md-2">Company name</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr>
-                                      <td>
-                                          <p>{{ $contacts->name }}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ $contacts->status }}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ $contacts->discription }}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ $contacts->start_date }}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ $contacts->end_date }}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ $contacts->customer->company_name }}</p>
-                                      </td>
-
-
-                                  </tr>
-
-                              </tbody>
-                          </table>
-
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  @endsection
+@endsection

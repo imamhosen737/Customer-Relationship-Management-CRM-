@@ -57,7 +57,7 @@ class EstimateController extends Controller
         $estimate_user= EstimateUser::where('estimate_id',$id)->get();
         $estimate_items= EstimateItems::where('estimate_id',$id)->get();
         $estimate_user_count=count($estimate_user);
-        return view('customers.estimate.estimate_view',compact('estimate', 'estimate_user','estimate_items','estimate_user_count'));
+        return view('customer.estimate.estimate_view',compact('estimate', 'estimate_user','estimate_items','estimate_user_count'));
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use App\Models\Invoice;
@@ -8,15 +8,11 @@ use App\Models\customers;
 use App\Models\Item;
 use Carbon\Carbon;
 
-class IsCustomer extends Controller
+class Helper
 {
-    public function index()
+    public static function getRecurringInvoice()
     {
-        //in voices due
-       $invoice_due = Invoice::where('invoice_type', 'regular')
-       ->where('customer_id', auth()->user()->customer->id)
-       ->get();
-        $invoices =  Invoice::with('customer', 'items', 'customer.user', 'items.unit', 'items.tax')
+        return Invoice::with('customer', 'items', 'customer.user', 'items.unit', 'items.tax')
             ->where('customer_id', auth()->user()->customer->id)
             ->where('invoice_type', 'recurring')
             ->get()
@@ -28,6 +24,5 @@ class IsCustomer extends Controller
                     return $q;
                 }
             });
-        return view('customer', compact('invoices','invoice_due'));
     }
 }

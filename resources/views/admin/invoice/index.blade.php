@@ -1,12 +1,6 @@
 @extends('layouts.app')
-@section('page_title_extra')
-   {{-- <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Invoices</li>
-        </ol>
-    </nav> --}}
-    <h1 class="m-0"><span>Invoices</span></h1>
+@section('page_title')
+    Invoices
 @endsection
 
 @section('content')
@@ -14,7 +8,7 @@
 <div class="container-fluid wrapper">
     <div class="card mb-4">
         <div class="card-body pt-3 pb-3">
-            <a href="{{route('invoice.create')}}" class="btn btn-md btn-blue"><i class="fas fa-plus"></i> New Invoice</a>
+            <a href="{{url('admin/invoice/create')}}" class="btn btn-md btn-blue"><i class="fas fa-plus"></i> New Invoice</a>
         </div>
     </div>
     <div class="card">
@@ -27,7 +21,9 @@
                         <th class="col-md-2">Total Payable Amount</th>
                         <th >Date</th>
                         <th >Due date</th>
-                        <th >Customer</th>
+                         @if (auth()->user()->role == 'admin')
+                         <th>Customer</th>
+                         @endif
                         <th >Status</th>
                         <th >Action</th>
                     </tr>
@@ -41,18 +37,18 @@
                             <td>{{$invoice->total}}</td>
                             <td>{{$invoice->date}}</td>
                             <td>{{$invoice->due_date}}</td>
-                            <td>{{$invoice->customer}}</td>
+                            @if (auth()->user()->role == 'admin')
+                            <td>{{ $invoice->customer }}</td>
+                            @endif
                             <td><span class="  btn btn-sm btn-outline-dark">{{$invoice->status}}</span></td>
                             <td>
-{{--                                <a href="" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> View</a>--}}
-
-{{--                                <form action="{{route('invoice.destroy', $invoice->invoice_number)}}" method="POST">--}}
-{{--                                    @csrf--}}
-{{--                                    @method('DELETE')--}}
-{{--                                    <button type="submit" class="delete-invoice btn btn-sm btn-danger" data-id="{{$invoice->invoice_number}}"><i class="fas fa-trash"></i> Delete</button>--}}
-{{--                                </form>--}}
-                                <a href="{{route('invoice.show', $invoice->invoice_number)}}" class="btn btn-sm btn-blue"><i class="fas fa-eye"></i> View</a>
+                                  
+                                <a href="{{url('admin/invoice', $invoice->invoice_number)}}" class="btn btn-sm btn-blue"><i class="fas fa-eye"></i> View</a>
+                                
+                                @if (auth()->user()->role == 'admin')
                                 <a href="javascript:;" class="delete-invoice btn btn-sm btn-danger" data-id="{{$invoice->invoice_number}}"><i class="fas fa-eye"></i> Delete</a>
+                                @endif
+                                
 
                             </td>
                         </tr>
@@ -77,7 +73,7 @@
             }
             var thisAttr = $(this)
             var id = thisAttr.data('id');
-            var url = '{{ route("invoice.destroy", ":id") }}';
+            var url = '{{ url("admin/invoice", ":id") }}';
             url = url.replace(':id', id);
 
             $.ajax({

@@ -1,19 +1,18 @@
 @extends('layouts.app')
 
-@section('page_title_extra')
-    {{-- <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mb-0">
-            {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
-            {{-- <li class="breadcrumb-item active" aria-current="page">Users</li> --}}
-        {{-- </ol> --}}
-    {{-- </nav> --}} 
-    <h1 class="m-0"><span>Users</span></h1>
-    <a class="float-right btn btn-blue btn-create-user" href="javascript:;" style="font-size: 18px;"> <i class="fa fa-plus"></i> Create </a>
-    <a class="float-right btn btn-danger btn-create-cancel-user" href="javascript:;" style="font-size: 18px; display: none;"> <i class="fa fa-times"></i> Cancel </a>
-@endsection
+@section('page_title') 
+   Users
+    @endsection
 
 @section('content')
 
+<div class="card">
+    <div class="card-body">
+        <a class="float-right btn btn-blue btn-create-user" href="javascript:;" style="font-size: 18px;"> <i class="fa fa-plus"></i> Create </a>
+        <a class="float-right btn btn-danger btn-create-cancel-user" href="javascript:;" style="font-size: 18px; display: none;"> <i class="fa fa-times"></i> Cancel </a>
+    
+    </div>
+</div>
 <div class="container">
     @if (session('success'))
         <div class="alert alert-success  alert-dismissible fade show" role="alert">

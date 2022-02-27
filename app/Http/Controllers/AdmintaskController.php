@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Invoice;
-use App\Models\Payment;
 
-class InvoiceStatusController extends Controller
+class AdmintaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +13,7 @@ class InvoiceStatusController extends Controller
      */
     public function index()
     {
-        $customer_id = auth()->user()->customers->id;
-        $invoice_info = Invoice::where('customer_id', $customer_id)->get();
-        return view('customer.invoice.invoice_list',compact('invoice_info'));
+        
     }
 
     /**

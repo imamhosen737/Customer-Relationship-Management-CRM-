@@ -19,6 +19,9 @@ class Invoice extends Model
         return $this->belongsTo('App\Models\Customers');
     }
 
+    public function payment(){
+        return $this->hasMany(Payment::class);
+    }
     public function items()
     {
         return $this->hasOne('App\Models\Item', 'id', 'item_id');

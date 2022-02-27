@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\customer;
-
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Invoice;
+namespace App\Http\Controllers;
+use App\Models\User;
+use App\Models\Customers;
 use App\Models\Payment;
+use App\Models\PaymentMethod;
+use App\Models\Invoice;
+use Illuminate\Http\Request;
 
-class InvoiceStatusController extends Controller
+class paymentreceivedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,17 @@ class InvoiceStatusController extends Controller
      */
     public function index()
     {
-        $customer_id = auth()->user()->customers->id;
-        $invoice_info = Invoice::where('customer_id', $customer_id)->get();
-        return view('customer.invoice.invoice_list',compact('invoice_info'));
+        $payment = user::where('role', 'admin')->get();
+        $payment = Payment::all();
+        // $payment = Payment::with('invoice', 'user' ,'paymentMethod')
+        //    ->where('user.role',  'admin')
+        //    ->get();
+        // dd($payment);
+        // $Customers = Customers::all();
+        // $user=User::where('role', 'admin')->get();
+        // $paymentmethod=PaymentMethod::all();
+        // $invoice=Invoice::all();
+        return view('admin.payments.paymentreceived', compact('payment'));
     }
 
     /**

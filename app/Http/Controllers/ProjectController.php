@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use DateTime;
+use App\Models\Tasks;
 use App\Models\Project;
 use App\Models\Customer;
-use App\Models\Tasks;
 use App\Models\Milestones;
+use App\Models\Timesheets;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -33,11 +35,11 @@ class ProjectController extends Controller
         $datas = Tasks::where('project_id', $id)->get();
         return view('admin.tasks.index', compact('datas', 'projectId'));
     }
-   public function milestones($id)
+    public function milestones($id)
     {
         $projectId = $id;
-       $datas = Milestones::where('project_id', $id)->get();
-       return view('admin.milestones.milestones_list', compact('datas', 'projectId'));
+        $datas = Milestones::where('project_id', $id)->get();
+        return view('admin.milestones.milestones_list', compact('datas', 'projectId'));
     }
 
 
@@ -58,15 +60,28 @@ class ProjectController extends Controller
     public function show($id)
     {
         $contacts = Project::find($id);
-        $project= Project::get();
+        $projects = Project::find($id);
+        $project = Project::get();
         $project_count = count($project);
-        $milestone= Milestones::where('project_id', $id)->get();
+        $milestone = Milestones::where('project_id', $id)->get();
         $milestone_count = count($milestone);
-        $task= Tasks::where('project_id', $id)->get();
-        $task_count=count($task);
-        // dd($task_count);
-        // exit;
-        return view('admin.Projects.show', compact('contacts', 'id','task_count','milestone_count','project_count'));
+        $task = Tasks::where('project_id', $id)->get();
+        $task_count = count($task);
+        $total_task = Tasks::where('project_id', $id)->sum('duration');
+        $proj_task = Tasks::where('project_id', $id)->get();
+        $p_t_spend = 0;
+        // dd($total_task);
+        foreach ($proj_task as $key => $v) {
+            $timesheet = Timesheets::where('task_id', $v->id)->get();
+            foreach ($timesheet as $t) {
+                    $from_time = strtotime($t->start_time);
+                    $to_time = strtotime($t->end_time);
+                    $a=round(abs($to_time - $from_time) /60,2);
+                    $p_t_spend+=$a;
+            }
+        }
+
+        return view('admin.Projects.show', compact('proj_task','total_task','p_t_spend','contacts', 'id', 'task_count', 'milestone_count', 'project_count', 'projects'));
     }
     public function edit($id)
     {

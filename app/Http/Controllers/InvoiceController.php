@@ -18,7 +18,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::with('customer', 'items', 'customer.user', 'items.unit', 'items.tax')
+        if(auth()->user()->role == 'admin'){
+            $invoices = Invoice::with('customer', 'items', 'customer.user', 'items.unit', 'items.tax')
             ->orderBy('invoice_number', 'desc')
             ->get(['invoice_number',  'customer_id', 'item_id',   'invoice_type', 'due_date', 'date', 'interval', 'price', 'qty', 'tax', 'total', 'discount', 'payable', 'status'])
             ->groupBy('invoice_number')
@@ -32,11 +33,31 @@ class InvoiceController extends Controller
                 $data->due_date = $invoice[0]->due_date;
                 return $data;
             });
+            return view('admin.invoice.index', compact('invoices'));
+        }else{
+            $invoices = Invoice::with('customer', 'items', 'customer.user', 'items.unit', 'items.tax')
+            ->orderBy('invoice_number', 'desc')
+            ->where('customer_id', auth()->user()->customer->id)
+            ->get(['invoice_number',  'customer_id', 'item_id',   'invoice_type', 'due_date', 'date', 'interval', 'price', 'qty', 'tax', 'total', 'discount', 'payable', 'status'])
+            ->groupBy('invoice_number')
+            ->map(function ($invoice) {
+                $data = new \stdClass();
+                $data->invoice_number = $invoice[0]->invoice_number;
+                $data->customer = $invoice[0]->customer->user->name;
+                $data->total = $invoice->sum('total');
+                $data->status = $invoice[0]->status;
+                $data->date = $invoice[0]->date;
+                $data->due_date = $invoice[0]->due_date;
+                return $data;
+            });
+            return view('admin.invoice.index', compact('invoices'));
+        }
+       
 
 
 
 
-        return view('admin.invoice.index', compact('invoices'));
+        
     }
 
     /**
@@ -101,7 +122,8 @@ class InvoiceController extends Controller
     {
         $request->validate([
             'customer_id' => 'required',
-            'invoice_type' => 'required'
+            'invoice_type' => 'required',
+            'recurring' => 'integer',
         ]);
         try {
             $invoice['invoice_number'] = $request->invoice_no;

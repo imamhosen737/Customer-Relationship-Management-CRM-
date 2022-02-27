@@ -107,6 +107,9 @@
 												<div class="form-group">
 													<input type="submit" class="form-control" value="SUBMIT">
 												</div><!-- .form-group end -->
+												<div class="form-group">
+													<a href="{{route('login')}}" class="btn btn-block btn-info" style="width: 100%">Login</a>
+												</div><!-- .form-group end -->
 
 
 												@if(session('leadSuccess'))

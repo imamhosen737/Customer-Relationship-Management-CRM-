@@ -198,6 +198,7 @@ class EstimateController extends Controller
         $data->delete();
         return redirect()->route('estimate.index');
     }
+    
     public function getItem($id)
     {
         $data = Item::find($id);

@@ -1,219 +1,127 @@
 @extends('layouts.app')
 @section('page_title')
 <span>Dashboard</span>
+{{-- @dd($user_id); --}}
 @endsection
 @section('content')
-<form action="" method="get">
-
-    <h2 class="text-center mt-5">Normal Input Field</h2>
-
-    <div class="form-group">
-        <label for="name">name</label>
-        <input id="name" type="text" class="form-control" name="name" value="" placeholder="First name">
-    </div>
-    
-
-
-    <h2 class="text-center mt-5">Double Input Field</h2>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email" value=" " placeholder="Email">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" value=" " placeholder="Password">
-        </div>
-    </div>
-
-
-
-    <h2 class="text-center mt-5">Triple Input Field</h2>
-
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label for="name">Email</label>
-            <input type="text" class="form-control" name="name" id="name" value="" placeholder="Name">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email" value="" placeholder="Email">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
-        </div>
-    </div>
-
-
-
-    <h2 class="text-center mt-5">Normal Textarea</h2>
-
-    <div class="form-group">
-        <label for="desc">Bio / Description</label>
-        <textarea id="desc" class="form-control" name="desc" value="" placeholder="Bio / description"></textarea>
-    </div>
-
-
-
-    <h2 class="text-center mt-5">CK Editor Textarea</h2>
-
-    <div class="form-group">
-        <label for="desc">Ck Editor</label>
-        <textarea id="desc" class="form-control ckEditor" name="desc" value="" placeholder="Ck Editor"></textarea>
-    </div>
-
-
-
-    <h2 class="text-center mt-5">Radio Button</h2>
-
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="role" id="Radios1" value="option1" checked>
-        <label class="form-check-label" for="Radios1">
-            Default radio
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="role" id="Radios2" value="option2">
-        <label class="form-check-label" for="Radios2">
-            Second default radio
-        </label>
-    </div>
-
-
-
-    <h2 class="text-center mt-5">Dropdown Input Field</h2>
-
-    <div class="form-group">
-        <label for="country">Country</label><br>
-        <select id="country" class="custom-select" name="country">
-            <option value="usa">United States</option>
-            <option value="usa">Bangladesh</option>
-        </select>
-    </div>
-
-<h2 class="text-center mt-5">Datalist Input Field</h2>
-
-    <div class="form-group">
-        <input type="text" list="item" value="" class="custom-select">
-        <datalist id="item">
-            <option value="apple">Apple</option>
-            <option value="banana">Banana</option>
-            <option value="orange">Orange</option>
-        </datalist>
-    </div>
-
-    <h2 class="text-center mt-5">Toogle Button</h2>
-
-    <div class="form-group">
-        <label for="subscribe">Toggle Button</label><br>
-        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
-            <input checked="" type="checkbox" id="subscribe" class="custom-control-input" name="subscribe">
-            <label class="custom-control-label" for="subscribe">Yes</label>
-        </div>
-        <label for="subscribe" class="mb-0">Yes</label>
-    </div>
-
-
-
-    <h2 class="text-center mt-5">Check Box</h2>
-
-    <div class="form-group">
-        <label for="checkbox">Check Buttons </label>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="done" id="checkbox" checked="">
-            <label class="custom-control-label" for="checkbox">Yes</label>
-        </div>
-    </div>
-
-
-
-    <h2 class="text-center mt-5">File Input</h2>
-
-    <div class="form-group">
-        <label for="customFile">Photo</label>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
-        </div>
-    </div>
-
-
-
-    <h2 class="text-center mt-5">Normal Submit Button</h2>
-
-    <input type="submit" class="btn btn-primary" value="Submit">
-
-
-
-    <h2 class="text-center mt-5">Middle Submit Button</h2>
-
-    <div class="form-group text-center">
-    <input type="submit" class="btn btn-primary" value="Submit">
-    </div>
-
-
-
-    <h2 class="text-center mt-5">Block Submit Button</h2>
-
-    <input type="submit" class="btn btn-block btn-primary" value="Submit">
-
-
-
-
-</form>
-
-
-
-
-
-<h1 class="text-center mt-5">Table</h1>
-
-
-{{-- Table starts from here --}}
-<div class="container wrapper">
-    <table class="table table-bordered table-hover" cellspacing="0" width="100%">
-        <thead>
+<div class="container mt-5">
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <table class="table">
+          <tbody>
             <tr>
-                <th class="col-md-2">Name</th>
-                <th class="col-md-2">Position</th>
-                <th class="col-md-2">Office</th>
-                <th class="col-md-2">Age</th>
-                <th class="col-md-2">Start date</th>
-                <th class="col-md-2">Salary</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </tfoot>
-        <tbody>
-            <tr>
-                <td>Airi Satou</td>
-                <td class="highlight">Super</td>
-                <td>Tokyo</td>
-                <td>33</td>
-                <td>2008/11/28</td>
-                <td>$162,700</td>
+              <th width='30%'>Project name:</th>
+              <td>{{$projects->name}}</td>
             </tr>
             <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
+              <th>Description:</th>
+              <td>{{$projects->discription}}</td>
             </tr>
-
-        </tbody>
-    </table>
-</div>
-{{-- Table ends here --}}
+            <tr>
+              <th>Status:</th>
+              <td>{{$projects->status}}</td>
+            </tr>
+            <tr>
+              <th>Start Date:</th>
+              <td>{{$projects->start_date}}</td>
+            </tr>
+            <tr>
+              <th>Deadline:</th>
+              <td>{{$projects->end_date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <style>
+          #chartdiv {
+            width: 100%;
+            height: 500px;
+          }
+        </style>
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  
+        <!-- Chart code -->
+        <script>
+          am5.ready(function() {
+  
+  // Create root element
+  // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+  var root = am5.Root.new("chartdiv");
+  
+  // Set themes
+  // https://www.amcharts.com/docs/v5/concepts/themes/
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+  
+  // Create chart
+  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+  var chart = root.container.children.push(
+    am5percent.PieChart.new(root, {
+      endAngle: 270
+    })
+  );
+  
+  // Create series
+  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+  var series = chart.series.push(
+    am5percent.PieSeries.new(root, {
+      valueField: "value",
+      categoryField: "category",
+      endAngle: 270
+    })
+  );
+  
+  series.states.create("hidden", {
+    endAngle: -90
+  });
+  @php
+  $remaining=$total_task-$p_t_spend;
+  @endphp
+  // Set data
+  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+  series.data.setAll([{
+    category: "Remaining",
+    value: {{$remaining}}
+  }, {
+    category: "Completed",
+    value: {{$p_t_spend}}
+  }, ]);
+  
+  series.appear(1000, 100);
+  
+  }); // end am5.ready()
+        </script>
+  
+        <!-- HTML -->
+        <div id="chartdiv"></div>
+      </div>
+    </div>
+    <h2 class="text-center mt-5">Task Progress</h2>
+    <div class="row mt-5">
+      @foreach ($proj_task as $pt)
+      @php
+      $p_spend=0;
+      $time_sheet=DB::table('timesheets')->where('task_id',$pt->id)->get();
+      foreach ($time_sheet as $t) {
+      $from_time = strtotime($t->start_time);
+      $to_time = strtotime($t->end_time);
+      $a=round(abs($to_time - $from_time) /60,2);
+      $p_spend+=$a;
+      }
+      $prog=($p_spend/$pt->duration)*100;
+      @endphp
+      <p class="mt-5">{{$pt->subject}}</p>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: {{$prog}}%" aria-valuenow="{{$prog}}" aria-valuemin="0"
+          aria-valuemax="{{$pt->duration}}"></div>
+      </div>
+      @endforeach
+  
+    </div>
+  </div>
 @endsection

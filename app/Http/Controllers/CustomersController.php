@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\User;
 use App\Models\Contact;
+use App\Models\Project;
 use App\Models\customers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -126,7 +128,7 @@ class CustomersController extends Controller
         $userData['password'] = bcrypt($request->password);
         $userData['status'] = $request->status;
 
-        $userId=customers::find($id)->user_id;
+        $userId = customers::find($id)->user_id;
         User::find($userId)->update($userData);
 
         $customerData['company_name'] = $request->company_name;
@@ -164,7 +166,22 @@ class CustomersController extends Controller
     public function details($id)
     {
         $data = customers::find($id);
-        $dataCon = Contact::where('customer_id',$id)->get();
-        return view('admin.customer.customer_details', compact('data','dataCon'));
+        $dataCon = Contact::where('customer_id', $id)->get();
+        return view('admin.customer.customer_details', compact('data', 'dataCon'));
+    }
+
+    public function gantt($id)
+    {
+        // dd($id);
+        $project = Project::where('id', $id)->first();
+        $p_id = $project->id;
+
+        $start_date = $project->start_date;
+        // dd($start_date);
+        $date1 = new DateTime($project->start_date);
+        $date2 = new DateTime($project->end_date);
+        $interval = $date1->diff($date2);
+        $days=$interval->days;
+        return view('admin.gantt', compact('p_id','start_date','days'));
     }
 }
